@@ -1,0 +1,91 @@
+{
+ "removed": {
+  "B09": "replaced by our 540 mount",
+  "C08": "replaced by our long pinion",
+  "D3542_OUTRUNNER": "replaced by the 540 motor",
+  "Servo": "replaced by the MG946R"
+ },
+ "pocket_car_coords": null,
+ "motor_notch_car_coords": null,
+ "overlaps": [
+  [
+   "pinion_long",
+   "C07_0",
+   2.1,
+   "mm3",
+   [
+    [
+     -123.8,
+     -12.1,
+     -15.2
+    ],
+    [
+     -121.4,
+     5.9,
+     -11.4
+    ]
+   ]
+  ],
+  [
+   "servo_MG946R",
+   "B04_0",
+   6.9,
+   "mm3",
+   [
+    [
+     117.1,
+     -1.7,
+     -7.5
+    ],
+    [
+     169.3,
+     18.0,
+     6.5
+    ]
+   ]
+  ],
+  [
+   "servo_MG946R",
+   "Servo_Horn_0",
+   14.8,
+   "mm3",
+   [
+    [
+     133.7,
+     5.1,
+     -18.7
+    ],
+    [
+     140.4,
+     11.1,
+     -13.7
+    ]
+   ]
+  ]
+ ],
+ "skipped_not_watertight": [],
+ "notes": [],
+ "electronics_top_z_car_coords": 62.0,
+ "body_included": false,
+ "mg946r_extra_1.6mm_overlaps": [
+  [
+   "B04_0",
+   6.9
+  ],
+  [
+   "Servo_Horn_0",
+   14.8
+  ]
+ ],
+ "mg946r_extra_5.7mm_overlaps": [
+  [
+   "B04_0",
+   6.9
+  ],
+  [
+   "Servo_Horn_0",
+   14.8
+  ]
+ ],
+ "stock_servo_overlaps_for_reference": []
+}

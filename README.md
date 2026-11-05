@@ -30,3 +30,7 @@ Parts are modelled in **build123d** (0.13). Fit-test prints are kept to 1 hour a
 - **Tarmo5** by Kris / Engineering NS ([Printables 348623](https://www.printables.com/model/348623-3d-printed-rc-car-tarmo5), [Onshape source](https://cad.onshape.com/documents/866dfd956b60f623aa8e6234/w/2ed44a3da1c969b8110877f0/e/3e10e517f2654f1bfe05ac4d)), licensed **CC BY-NC-SA 4.0**. The files in `vendor/tarmo5/` are his, unchanged.
 - **FreeCAD/STEP conversion** used for measurements: [Nemesis81/Tarmo5-freecad](https://github.com/Nemesis81/Tarmo5-freecad), via our fork [bastotec/tarmo5-fpv](https://github.com/bastotec/tarmo5-fpv).
 - Because this car reuses and adapts Tarmo5 parts, **this project is shared under the same CC BY-NC-SA 4.0**: credit the original, share alike, no commercial use.
+
+## v1
+
+The v1 structure (rolling chassis, drivetrain, electronics, battery, no body) and its fit checks: [docs/v1.md](docs/v1.md).

@@ -1,0 +1,723 @@
+{
+ "groups": {
+  "tarmo5": "#9aa3ad",
+  "hardware": "#5d6670",
+  "wheels": "#2b2b2b",
+  "ours_printed": "#f08a24",
+  "motor": "#c9ced6",
+  "electronics": "#2f9e5b",
+  "battery": "#2f6fd6",
+  "servo": "#1c1c1c",
+  "body": "#d33f3f"
+ },
+ "parts": [
+  {
+   "name": "B03_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__B03_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "B08-T_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__B08-T_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "B02_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__B02_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "B04_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__B04_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "B05_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__B05_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "B06_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__B06_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A01_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A01_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A01_1",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A01_1.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "B13-T_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__B13-T_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "B12-T_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__B12-T_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "B01_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__B01_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "B11-T_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__B11-T_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "B10-T_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__B10-T_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "B07-T_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__B07-T_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "Part_1_0",
+   "group": "hardware",
+   "file": "parts/hardware__Part_1_0.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "Part_1_1",
+   "group": "hardware",
+   "file": "parts/hardware__Part_1_1.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "Part_1_2",
+   "group": "hardware",
+   "file": "parts/hardware__Part_1_2.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "Part_1_3",
+   "group": "hardware",
+   "file": "parts/hardware__Part_1_3.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "Part_1_4",
+   "group": "hardware",
+   "file": "parts/hardware__Part_1_4.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "Part_1_5",
+   "group": "hardware",
+   "file": "parts/hardware__Part_1_5.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "A02_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A02_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A02_1",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A02_1.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A02_2",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A02_2.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A02_3",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A02_3.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A02_4",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A02_4.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A02_5",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A02_5.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A02_6",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A02_6.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A02_7",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A02_7.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A04_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A04_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A04_1",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A04_1.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A03_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A03_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A03_1",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A03_1.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "Part_1_6",
+   "group": "hardware",
+   "file": "parts/hardware__Part_1_6.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "Part_1_7",
+   "group": "hardware",
+   "file": "parts/hardware__Part_1_7.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "A06_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A06_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A05_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A05_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A08_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A08_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A07_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A07_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A10B_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A10B_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A10C_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A10C_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A10A_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A10A_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A10B_1",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A10B_1.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A10A_1",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A10A_1.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A10C_1",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A10C_1.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "A09_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__A09_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "Servo_Horn_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__Servo_Horn_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "Part_1_8",
+   "group": "hardware",
+   "file": "parts/hardware__Part_1_8.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "C10_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C10_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "Part_1_9",
+   "group": "hardware",
+   "file": "parts/hardware__Part_1_9.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "C09_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C09_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "Part_1_10",
+   "group": "hardware",
+   "file": "parts/hardware__Part_1_10.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "C09_1",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C09_1.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "C10_1",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C10_1.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "Part_1_11",
+   "group": "hardware",
+   "file": "parts/hardware__Part_1_11.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "C07_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C07_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "C06_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C06_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "Part_1_12",
+   "group": "hardware",
+   "file": "parts/hardware__Part_1_12.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "C10_2",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C10_2.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "C10_3",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C10_3.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "C03_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C03_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "C03_1",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C03_1.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "C01_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C01_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "C01_1",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C01_1.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "C02_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C02_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "C02_1",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C02_1.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "C04_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C04_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "C04_1",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C04_1.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "C04_2",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C04_2.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "C04_3",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C04_3.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "C05-T_0",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C05-T_0.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "C05-T_1",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C05-T_1.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "C03_2",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C03_2.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "C03_3",
+   "group": "tarmo5",
+   "file": "parts/tarmo5__C03_3.stl",
+   "color": "#9aa3ad"
+  },
+  {
+   "name": "Part_1_13",
+   "group": "hardware",
+   "file": "parts/hardware__Part_1_13.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x16-Screw_0",
+   "group": "hardware",
+   "file": "parts/hardware__M4x16-Screw_0.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x16-Screw_1",
+   "group": "hardware",
+   "file": "parts/hardware__M4x16-Screw_1.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x16-Screw_2",
+   "group": "hardware",
+   "file": "parts/hardware__M4x16-Screw_2.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x16-Screw_3",
+   "group": "hardware",
+   "file": "parts/hardware__M4x16-Screw_3.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "Wheel_110mm_0",
+   "group": "wheels",
+   "file": "parts/wheels__Wheel_110mm_0.stl",
+   "color": "#2b2b2b"
+  },
+  {
+   "name": "Wheel_110mm_1",
+   "group": "wheels",
+   "file": "parts/wheels__Wheel_110mm_1.stl",
+   "color": "#2b2b2b"
+  },
+  {
+   "name": "Wheel_110mm_2",
+   "group": "wheels",
+   "file": "parts/wheels__Wheel_110mm_2.stl",
+   "color": "#2b2b2b"
+  },
+  {
+   "name": "Wheel_110mm_3",
+   "group": "wheels",
+   "file": "parts/wheels__Wheel_110mm_3.stl",
+   "color": "#2b2b2b"
+  },
+  {
+   "name": "M4x35-Screw_0",
+   "group": "hardware",
+   "file": "parts/hardware__M4x35-Screw_0.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x35-Screw_1",
+   "group": "hardware",
+   "file": "parts/hardware__M4x35-Screw_1.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x35-Screw_2",
+   "group": "hardware",
+   "file": "parts/hardware__M4x35-Screw_2.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x35-Screw_3",
+   "group": "hardware",
+   "file": "parts/hardware__M4x35-Screw_3.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x35-Screw_4",
+   "group": "hardware",
+   "file": "parts/hardware__M4x35-Screw_4.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x45-Screw_0",
+   "group": "hardware",
+   "file": "parts/hardware__M4x45-Screw_0.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x45-Screw_1",
+   "group": "hardware",
+   "file": "parts/hardware__M4x45-Screw_1.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x45-Screw_2",
+   "group": "hardware",
+   "file": "parts/hardware__M4x45-Screw_2.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x45-Screw_3",
+   "group": "hardware",
+   "file": "parts/hardware__M4x45-Screw_3.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x50-Screw_0",
+   "group": "hardware",
+   "file": "parts/hardware__M4x50-Screw_0.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x50-Screw_1",
+   "group": "hardware",
+   "file": "parts/hardware__M4x50-Screw_1.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x50-Screw_2",
+   "group": "hardware",
+   "file": "parts/hardware__M4x50-Screw_2.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x50-Screw_3",
+   "group": "hardware",
+   "file": "parts/hardware__M4x50-Screw_3.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x16-Screw_4",
+   "group": "hardware",
+   "file": "parts/hardware__M4x16-Screw_4.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x16-Screw_5",
+   "group": "hardware",
+   "file": "parts/hardware__M4x16-Screw_5.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x16-Screw_6",
+   "group": "hardware",
+   "file": "parts/hardware__M4x16-Screw_6.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x16-Screw_7",
+   "group": "hardware",
+   "file": "parts/hardware__M4x16-Screw_7.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x16-Screw_8",
+   "group": "hardware",
+   "file": "parts/hardware__M4x16-Screw_8.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M4x16-Screw_9",
+   "group": "hardware",
+   "file": "parts/hardware__M4x16-Screw_9.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M3-Nut_0",
+   "group": "hardware",
+   "file": "parts/hardware__M3-Nut_0.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M3-Nut_1",
+   "group": "hardware",
+   "file": "parts/hardware__M3-Nut_1.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "M3-Nut_2",
+   "group": "hardware",
+   "file": "parts/hardware__M3-Nut_2.stl",
+   "color": "#5d6670"
+  },
+  {
+   "name": "motor_standoff",
+   "group": "ours_printed",
+   "file": "parts/ours_printed__motor_standoff.stl",
+   "color": "#f08a24"
+  },
+  {
+   "name": "motor_plate",
+   "group": "ours_printed",
+   "file": "parts/ours_printed__motor_plate.stl",
+   "color": "#f08a24"
+  },
+  {
+   "name": "pinion_long",
+   "group": "ours_printed",
+   "file": "parts/ours_printed__pinion_long.stl",
+   "color": "#f08a24"
+  },
+  {
+   "name": "motor_540",
+   "group": "motor",
+   "file": "parts/motor__motor_540.stl",
+   "color": "#c9ced6"
+  },
+  {
+   "name": "electronics_tray",
+   "group": "ours_printed",
+   "file": "parts/ours_printed__electronics_tray.stl",
+   "color": "#f08a24"
+  },
+  {
+   "name": "h_bridge_IBT2",
+   "group": "electronics",
+   "file": "parts/electronics__h_bridge_IBT2.stl",
+   "color": "#2f9e5b"
+  },
+  {
+   "name": "esp32_devkit",
+   "group": "electronics",
+   "file": "parts/electronics__esp32_devkit.stl",
+   "color": "#2f9e5b"
+  },
+  {
+   "name": "mp1584_5V",
+   "group": "electronics",
+   "file": "parts/electronics__mp1584_5V.stl",
+   "color": "#2f9e5b"
+  },
+  {
+   "name": "xl4015_servo_6V",
+   "group": "electronics",
+   "file": "parts/electronics__xl4015_servo_6V.stl",
+   "color": "#2f9e5b"
+  },
+  {
+   "name": "battery_module_2S",
+   "group": "ours_printed",
+   "file": "parts/ours_printed__battery_module_2S.stl",
+   "color": "#f08a24"
+  },
+  {
+   "name": "cell_18650_1",
+   "group": "battery",
+   "file": "parts/battery__cell_18650_1.stl",
+   "color": "#2f6fd6"
+  },
+  {
+   "name": "cell_18650_2",
+   "group": "battery",
+   "file": "parts/battery__cell_18650_2.stl",
+   "color": "#2f6fd6"
+  },
+  {
+   "name": "bms_2s_40A",
+   "group": "electronics",
+   "file": "parts/electronics__bms_2s_40A.stl",
+   "color": "#2f9e5b"
+  },
+  {
+   "name": "servo_MG946R",
+   "group": "servo",
+   "file": "parts/servo__servo_MG946R.stl",
+   "color": "#1c1c1c"
+  }
+ ]
+}

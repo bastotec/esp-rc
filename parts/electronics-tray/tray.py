@@ -1,29 +1,35 @@
-"""esp-rc electronics tray v0 (build123d 0.13).
+"""esp-rc electronics tray v1 (build123d 0.13).
 
-Bolts to the four 5 mm holes on top of the Tarmo5 centre chassis (B03):
-a 45 mm (along the car) x 20 mm (across) pattern, measured from the
-community STEP assembly. Frame: origin = centre of that hole pattern on
-B03's top face (z=0), +X = towards the front of the car.
+Bolts to the four 5 mm through-holes in the top plate of the Tarmo5 centre
+chassis (B03): a 45 mm (along the car) x 20 mm (across) pattern, measured from
+the community STEP assembly. B03's top plate is 6 mm thick with the battery bay
+under it, so each bolt is an M4x16 button head from the top with a washer and
+M4 nyloc nut inside the bay (reach it with the battery out).
 
-Holds, from rear to front (all zip-tied, so exact board hole spacings
-don't matter): XL4015 (servo 5.5 V), ESP32 DevKit + MP1584 side by side,
-IBT_2 / BTS7960 H-bridge (heatsink down, vented side walls).
+Frame: origin = centre of that hole pattern on B03's top face (z=0),
++X = towards the front of the car. In car coordinates the origin is at
+(64.4, 8.15, 16.44).
+
+v1 changes from v0: 5 mm floor (bolt heads sink into counterbores, so the
+H-bridge heatsink sits flat over them), M4 instead of M3, and a cable notch on
+the open (-Y) side for the battery lead coming up from the bay.
 """
 from build123d import *
 import sys
 
-W = 58.0          # B03 top width
-X0, X1 = -108.0, 45.0   # on B03 top (B03 rear lip at -125.9, front end at +45.5)
-T = 3.0           # floor
+W = 58.0                 # B03 top width
+X0, X1 = -108.0, 45.0    # tray length on B03 top
+T = 5.0                  # floor
 WALL = 2.0
-HOLE = 3.4        # M3 clearance; B03's holes are 5 mm (insert/what goes there: unverified)
+HOLE = 4.5               # M4 clearance
+CB_D, CB_H = 8.4, 2.6    # counterbore for an M4 button head (7.6 x 2.2)
 
 # pockets: (name, x_centre, y_centre, length_x, width_y, wall_h)
 POCKETS = [
     ("hbridge", 17.0, 0.0, 52.0, 52.0, 6.0),
-    ("esp32",   -43.0, -10.0, 56.0, 30.0, 11.0),   # board sits on 9 mm end rails: header pins hang below
+    ("esp32",   -43.0, -10.0, 56.0, 30.0, 11.0),   # fits 30- and 38-pin DevKits; board sits on 9 mm end rails
     ("mp1584",  -43.0, 17.5, 24.0, 19.0, 4.0),
-    ("xl4015",  -89.0, 0.0, 28.0, 53.0, 4.0),     # turned across the car
+    ("xl4015",  -89.0, 0.0, 28.0, 53.0, 4.0),      # turned across the car
 ]
 BOLTS = [(sx * 22.5, sy * 10.0) for sx in (-1, 1) for sy in (-1, 1)]
 
@@ -32,44 +38,44 @@ with BuildPart() as tray:
         with Locations(((X0 + X1) / 2, 0)):
             RectangleRounded(X1 - X0, W, 6)
     extrude(amount=T)
-    # pocket rims
     for name, cx, cy, lx, ly, h in POCKETS:
         with BuildSketch(Plane.XY.offset(T)):
             with Locations((cx, cy)):
                 RectangleRounded(lx + 2 * WALL, ly + 2 * WALL, 3)
                 RectangleRounded(lx, ly, 1.5, mode=Mode.SUBTRACT)
         extrude(amount=h)
-    # bolt holes + counterbores
+    # bolt holes + counterbores from the top
     with Locations(*[(x, y, 0) for x, y in BOLTS]):
         Hole(HOLE / 2, depth=T + 10)
-    with Locations(*[(x, y, T) for x, y in BOLTS]):
-        CounterBoreHole(HOLE / 2, 3.1, 2.0, depth=T)  # M3 button head
-    # zip-tie slots: 4 x 2.2 mm pairs across each pocket
+    with BuildSketch(Plane.XY.offset(T - CB_H)):
+        with Locations(*BOLTS):
+            Circle(CB_D / 2)
+    extrude(amount=CB_H + 7, mode=Mode.SUBTRACT)
+    # zip-tie slots through the floor beside each pocket
     for name, cx, cy, lx, ly, h in POCKETS:
         for dx in (-lx / 4, lx / 4):
             with BuildSketch():
                 with Locations((cx + dx, cy - ly / 2 - WALL - 0.5), (cx + dx, cy + ly / 2 + WALL + 0.5)):
                     Rectangle(4.2, 2.4)
-            extrude(amount=T + 10, mode=Mode.SUBTRACT)
-    # vents in the H-bridge floor (heatsink sits on them)
-    name, cx, cy, lx, ly, h = POCKETS[0]
+            extrude(amount=T + 12, mode=Mode.SUBTRACT)
+    # vents under the H-bridge heatsink (kept clear of the bolt counterbores)
+    _, cx, cy, lx, ly, h = POCKETS[0]
     with BuildSketch():
-        with Locations((cx, cy), (cx, cy - 18), (cx, cy + 18)):
-            SlotCenterToCenter(32, 4)
-    extrude(amount=T + 10, mode=Mode.SUBTRACT)
-    # lightening under the ESP32 area (between bolts)
-    with BuildSketch():
-        with Locations((-89, 0)):
-            SlotCenterToCenter(30, 10, rotation=90)
-    extrude(amount=T + 10, mode=Mode.SUBTRACT)
+        with Locations((cx - 6, cy), (cx - 6, cy - 18), (cx - 6, cy + 18)):
+            SlotCenterToCenter(22, 4)
+    extrude(amount=T + 12, mode=Mode.SUBTRACT)
     # ESP32 end rails (no pins at the antenna and USB ends)
     _, cx, cy, lx, ly, h = POCKETS[1]
     with BuildSketch(Plane.XY.offset(T)):
         with Locations((cx - lx / 2 + 1.5, cy), (cx + lx / 2 - 1.5, cy)):
             Rectangle(3, ly)
     extrude(amount=9)
+    # cable notch on the -Y edge (battery lead from the bay's open side)
+    with BuildSketch():
+        with Locations((-66.0, -W / 2)):
+            RectangleRounded(12, 12, 2)
+    extrude(amount=T + 12, mode=Mode.SUBTRACT)
 
 p = tray.part
 print("valid", p.is_valid, "vol cm3", round(p.volume / 1000, 2), "bbox", p.bounding_box())
-out = sys.argv[1] if len(sys.argv) > 1 else "tray_v0.stl"
-export_stl(p, out)
+export_stl(p, sys.argv[1] if len(sys.argv) > 1 else "tray_v1.stl")
