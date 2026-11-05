@@ -41,3 +41,7 @@ Checks that our long pinion meshes with the real Tarmo5 main gear (C07) on your 
 - Print: PETG, Ender 0.2 mm nozzle, 0.16 mm layers, 2 walls, 15% infill, **no brim**: 2.95 g, 55 min 51 s (slicer estimate). File on the Ender: `mesh_test_petg_02_016_ender.gcode`.
 - Assembly: take the pinion off the motor shaft, slide the link's ring on from the motor end, refit the pinion, put the gear sector on the pin, then the M3 screw and washer (leave it loose enough that the gear turns).
 - Test: turn the motor shaft by hand through the sector. It should roll smoothly with a little play, no binding and no skipping.
+
+## Motor plate fit test (`plate_fit_test.py`)
+
+A 3 mm slice of the motor plate with the same motor-face layout: 13.5 mm boss hole and 2x 3.4 mm M3 holes 25 mm apart. Use 2x M3x6 (the motor takes 5 mm of screw at most). PETG, Ender 0.2 nozzle, 0.16 mm layers, 2 walls, no brim: 1.03 g, 15 min 14 s (slicer estimate).
