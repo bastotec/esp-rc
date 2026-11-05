@@ -29,3 +29,15 @@ Scripts: `mount540.py` (build123d, generated from `../motor775/mount775_v2.py`),
 1. Sweep the upper arm through its suspension travel against the motor can.
 2. 7.7 mm of grip on a 3.17 mm shaft with one grub screw is untested under load; file a flat on the shaft for the grub screw, or buy a 17 mm-shaft 540.
 3. Print the three parts and test-fit on the real lid before printing the rest of the car.
+
+## Gear mesh test (`mesh_test.py`)
+
+Checks that our long pinion meshes with the real Tarmo5 main gear (C07) on your 540, without printing the gearbox.
+
+- `mesh_test_gear.stl`: a 90° sector of the real C07 teeth, 3 mm thick, on a hub with a 6.4 mm hole.
+- `mesh_test_link.stl`: a ring that slides over the pinion's smooth hub (15.5 mm hole, above the 25 mm flange) and holds a 6 mm pin 38.98 mm away, the C07–C08 centre distance in the car model. The gear turns on that pin, held by an M3 screw and washer in the pin's end.
+- `mesh_test_plate.stl`: both parts on one plate.
+- Fit check in the car frame: link–pinion 0 mm³, link–gear 0 mm³. Gear–pinion overlap 0.44 mm³ is the 3 mm share of the stock car's own C07–pinion tooth overlap (2.65 mm³ over 18 mm).
+- Print: PETG, Ender 0.2 mm nozzle, 0.16 mm layers, 2 walls, 15% infill, **no brim**: 2.95 g, 55 min 51 s (slicer estimate). File on the Ender: `mesh_test_petg_02_016_ender.gcode`.
+- Assembly: take the pinion off the motor shaft, slide the link's ring on from the motor end, refit the pinion, put the gear sector on the pin, then the M3 screw and washer (leave it loose enough that the gear turns).
+- Test: turn the motor shaft by hand through the sector. It should roll smoothly with a little play, no binding and no skipping.
