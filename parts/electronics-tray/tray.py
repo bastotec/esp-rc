@@ -28,7 +28,7 @@ CB_D, CB_H = 8.4, 2.6    # counterbore for an M4 button head (7.6 x 2.2)
 POCKETS = [
     ("hbridge", 17.0, 0.0, 52.0, 52.0, 6.0),
     ("esp32",   -43.0, -10.0, 19.0, 23.5, 11.0),   # ESP32-C3 SuperMini (22.5 x 18 published) across the car, USB-C to the -Y edge; sits on 9 mm end rails
-    ("mp1584",  -43.0, 17.5, 24.0, 19.0, 4.0),
+    ("mp1584",  -43.0, 17.5, 18.5, 12.5, 4.0),    # MH-MINI-360 on hand (~17.2 x 11.4 published); key kept for the assembly script
     ("xl4015",  -89.0, 0.0, 28.0, 53.0, 4.0),      # turned across the car
 ]
 BOLTS = [(sx * 22.5, sy * 10.0) for sx in (-1, 1) for sy in (-1, 1)]
