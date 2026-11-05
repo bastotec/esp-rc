@@ -16,3 +16,7 @@
 **Fit check:** placed on B03 in the car model, nothing placed overlaps it. Parts the conversion left unplaced near the model's origin (CV parts, the torque damper, a wheel, the M3 rods) are ignored.
 
 **Assumptions to check:** ESP32 DevKit board about 52 × 28 mm (30-pin); step-down sizes are the usual module sizes, not your boards; body clearance not checked.
+
+## Fit test (`tray_fit_test.py`)
+
+The four pocket rims as open frames, 2 mm tall with 1 mm walls, same inner sizes as `tray.py`: H-bridge 52 x 52, ESP32 56 x 30 (with end rails), MP1584 24 x 19, XL4015 28 x 53. `fit_tests_bed.stl` lays them out with the motor plate fit test. PETG, Ender 0.2 nozzle, 0.16 mm layers, 2 walls, no brim: 3.0 g, 42 min 35 s (slicer estimate).
