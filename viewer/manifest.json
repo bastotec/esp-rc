@@ -672,9 +672,9 @@
    "color": "#2f9e5b"
   },
   {
-   "name": "esp32_devkit",
+   "name": "esp32c3_supermini",
    "group": "electronics",
-   "file": "parts/electronics__esp32_devkit.stl",
+   "file": "parts/electronics__esp32c3_supermini.stl",
    "color": "#2f9e5b"
   },
   {

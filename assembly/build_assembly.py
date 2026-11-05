@@ -54,9 +54,9 @@ hb = [box((46, 46, 22.0), (hx, hy, FLOOR)), box((50, 50, 1.6), (hx, hy, FLOOR + 
 HB_TOP = FLOOR + 23.6 + 17.0
 add("h_bridge_IBT2", "electronics", U(hb))
 ex, ey = TRAY[0] - 43.0, TRAY[1] - 10.0; eb = FLOOR + 9.0
-add("esp32_devkit", "electronics", U([box((51.5, 28.4, 1.6), (ex, ey, eb)), box((18, 25.5, 3.2), (ex + 13, ey, eb + 1.6)),
-                                       box((6, 8, 3), (ex - 24, ey, eb + 1.6)),
-                                       box((48, 2.5, 8.4), (ex, ey - 12.9, eb - 8.4)), box((48, 2.5, 8.4), (ex, ey + 12.9, eb - 8.4))]))
+add("esp32c3_supermini", "electronics", U([box((18.0, 22.5, 1.6), (ex, ey, eb)), box((13, 13, 2.4), (ex, ey + 3.5, eb + 1.6)),
+                                       box((9, 7.5, 3.2), (ex, ey - 9.5, eb + 1.6)),
+                                       box((2.5, 20.3, 8.4), (ex - 7.6, ey, eb - 8.4)), box((2.5, 20.3, 8.4), (ex + 7.6, ey, eb - 8.4))]))
 mx, my = TRAY[0] - 43.0, TRAY[1] + 17.5
 add("mp1584_5V", "electronics", U([box((22, 17, 1.6), (mx, my, FLOOR)), box((6, 6, 3), (mx + 3, my, FLOOR + 1.6))]))
 xx, xy = TRAY[0] - 89.0, TRAY[1]

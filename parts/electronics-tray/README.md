@@ -19,4 +19,8 @@
 
 ## Fit test (`tray_fit_test.py`)
 
-The four pocket rims as open frames, 2 mm tall with 1 mm walls, same inner sizes as `tray.py`: H-bridge 52 x 52, ESP32 56 x 30 (with end rails), MP1584 24 x 19, XL4015 28 x 53. `fit_tests_bed.stl` lays them out with the motor plate fit test. PETG, Ender 0.2 nozzle, 0.16 mm layers, 2 walls, no brim: 3.0 g, 42 min 35 s (slicer estimate).
+The four pocket rims as open frames, 2 mm tall with 1 mm walls, same inner sizes as `tray.py`: H-bridge 52 x 52, ESP32-C3 SuperMini 19 x 23.5 (with end rails under its short ends), MP1584 24 x 19, XL4015 28 x 53. `fit_tests_bed.stl` lays them out with the motor plate fit test. PETG, Ender 0.2 nozzle, 0.16 mm layers, 2 walls, no brim: 3.0 g, 42 min 35 s (slicer estimate).
+
+## ESP32 pocket: ESP32-C3 SuperMini (2026-11-05)
+
+The ESP32 pocket was 56 x 30 mm for a DevKit V1. We now use the ESP32-C3 SuperMini already on hand (published size 22.5 x 18 mm, not measured), so the pocket is **19 x 23.5 mm** inside, long axis across the car. The board rests on two rails, 11 x 3 mm and 9 mm tall, under the middle of its short ends, so they sit between the pin rows (a first version with full-width rails hit the headers in the clash check); its pin rows run along the long sides, between the rails. A 12 mm slot in the -Y wall lets a USB-C cable reach the board for flashing from the side of the car. Fit-test bed re-sliced: PETG, Ender 0.2 nozzle, 0.16 mm layers, 2 walls, no brim: 2.5 g, 35 min 28 s (slicer estimate).

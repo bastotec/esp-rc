@@ -64,7 +64,7 @@ Double these for two cars. Prices not checked.
 | PLA (or nylon; **no ABS, no PETG on the drivetrain**) | 1 kg | 2 kg (+ spares) | not checked |
 | Hard TPU 95A | 0.5 kg | 1 kg | R$128–169 per kg ([Polimus R$128](https://www.mercadolivre.com.br/filamento-de-impressao-3d-tpu-95a-cor-branco-1kg-brilho-premium-flexivel-by-polimus-3d/p/MLB79477240), [Elegoo R$152](https://www.mercadolivre.com.br/filamento-elegoo-tpu-branco-1kg-175mm-95a-premium-branco/p/MLB65171542)) |
 
-**Already on hand (2026-11-05):** motor, H-bridge, servos, step-downs, grease. Still to buy for the proof of concept: ESP32 DevKit V1, 6802-2RS bearings, fuse holders + 30 A *medium* blade fuses (ATO/ATC; the holder listing has no fuses), and screws/grub screw/TPU if missing. The servo and the electronics bay must be designed around the parts actually on hand, not the listed ones.
+**Already on hand (2026-11-05):** motor, H-bridge, servos, step-downs, grease. ESP32 boards are on hand too: two **ESP32-C3 SuperMini** (car + controller), so no DevKit to buy. Still to buy for the proof of concept: 6802-2RS bearings, fuse holders + 30 A *medium* blade fuses (ATO/ATC; the holder listing has no fuses), and screws/grub screw/TPU if missing. The servo and the electronics bay must be designed around the parts actually on hand, not the listed ones.
 
 **Rough Phase 1 total:** about **R$1,100–1,400 per car** with a 540 and our ESP32 electronics. That's my sum of the prices above plus guesses for screws, PLA and wiring. It's an estimate, not a quote.
 
@@ -96,7 +96,7 @@ Wiring, pins and firmware rules: [electronics.md](electronics.md). Prices are Br
 | Item | Per car | Price seen | Listing |
 |---|---:|---:|---|
 | BTS7960 43A H-bridge (IBT-2), 1000+ sold — **already have 1** (HW-039 board, used: clean and bench-test first) | 1 | R$42 | [listing](https://www.mercadolivre.com.br/modulo-driver-ponte-h-43a-bts7960-controle-motor-dc-robotica/p/MLB37899442) |
-| ESP32 WROOM DevKit V1, 500+ sold | 1 | R$49.90 | [listing](https://www.mercadolivre.com.br/esp32-wroom-devkit-v1-wifi-bluetooth-dual-core-esp32-desenvolvimento-iot-autom) |
+| ~~ESP32 WROOM DevKit V1~~ **not needed: ESP32-C3 SuperMini already on hand** | 1 | ~~R$49.90~~ | [listing](https://www.mercadolivre.com.br/esp32-wroom-devkit-v1-wifi-bluetooth-dual-core-esp32-desenvolvimento-iot-autom) |
 | XL4015 5A buck (servo rail, set to 5.5 V) — **already have step-downs; chip to identify** (servo rail needs ≥3 A) | 1 | R$22.41 | [listing](https://www.mercadolivre.com.br/regulador-de-tensao-xl4015-conversor-dc-dc-step-down-arduino/p/MLB2048275336) |
 | MP1584 3A mini buck (ESP32 rail, set to 5.0 V) — **already have step-downs; chip to identify** | 1 | R$19 | [listing](https://www.mercadolivre.com.br/modulo-conversor-tensao-mp1584-step-down-dc-dc-mp1584en/p/MLB35506732) |
 | Blade fuse holder (2.5 mm wire) + 30 A blade fuse | 1 | R$31.99 per 10 holders | [listing](https://www.mercadolivre.com.br/kit-10-porta-fusivel-lamina-medio-automotivo-fio-25mm/up/MLBU3136674600); fuses not priced |
@@ -107,7 +107,7 @@ Wiring, pins and firmware rules: [electronics.md](electronics.md). Prices are Br
 
 | Item | Per driver | Price seen | Listing |
 |---|---:|---:|---|
-| ESP32 WROOM DevKit V1 | 1 | R$49.90 | same as above |
+| ~~ESP32 WROOM DevKit V1~~ **second ESP32-C3 SuperMini, on hand** | 1 | ~~R$49.90~~ | |
 | Analog joystick modules (KY-023), pack of 2 | 1 pack | R$24.30 | [listing](https://www.mercadolivre.com.br/02-modulo-joystick-analogico-5v-ideal-p-arduino-pic/p/MLB75105243) |
 | Power | — | R$0 | any USB power bank or phone charger |
 | **Controller** | | **~R$74** | |
@@ -117,7 +117,7 @@ The same controller board, plugged into a laptop by USB, becomes the steering-wh
 **Total electronics, car + controller: ~R$211 per car, against ~R$352 for ESC + FlySky radio. Saves ~R$140 per car (~R$280 for both).**
 
 Choices and their reasons:
-- **Classic ESP32 DevKit, not ESP32-C3 SuperMini** (R$39.90). The SuperMini saves R$10, but many batches are reported to have weak antennas, and we want ~100 m. Not tested by us.
+- **ESP32-C3 SuperMini (changed 2026-11-05).** We first picked the classic DevKit because many SuperMini batches have weak antennas. Two SuperMinis turned up on hand, so we use them and fix range in firmware (lower TX power) or with a 31 mm wire antenna if needed. See [electronics.md](electronics.md).
 - **Two regulators.** The servo's current spikes can brown out the ESP32 if they share a rail, and an ESP32 reset is a car with no control. The MP1584 is R$19 of insurance.
 - **XL4015 at 5.5 V, not 6 V:** two 18650s sag to about 6.4 V near empty, and the buck needs headroom.
 - **Don't use an L298N:** it's only about 2 A and wastes about 2 V.

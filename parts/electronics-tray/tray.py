@@ -27,7 +27,7 @@ CB_D, CB_H = 8.4, 2.6    # counterbore for an M4 button head (7.6 x 2.2)
 # pockets: (name, x_centre, y_centre, length_x, width_y, wall_h)
 POCKETS = [
     ("hbridge", 17.0, 0.0, 52.0, 52.0, 6.0),
-    ("esp32",   -43.0, -10.0, 56.0, 30.0, 11.0),   # fits 30- and 38-pin DevKits; board sits on 9 mm end rails
+    ("esp32",   -43.0, -10.0, 19.0, 23.5, 11.0),   # ESP32-C3 SuperMini (22.5 x 18 published) across the car, USB-C to the -Y edge; sits on 9 mm end rails
     ("mp1584",  -43.0, 17.5, 24.0, 19.0, 4.0),
     ("xl4015",  -89.0, 0.0, 28.0, 53.0, 4.0),      # turned across the car
 ]
@@ -64,12 +64,18 @@ with BuildPart() as tray:
         with Locations((cx - 6, cy), (cx - 6, cy - 18), (cx - 6, cy + 18)):
             SlotCenterToCenter(22, 4)
     extrude(amount=T + 12, mode=Mode.SUBTRACT)
-    # ESP32 end rails (no pins at the antenna and USB ends)
+    # ESP32-C3 SuperMini: pins run along its long (Y) sides, so the board rests
+    # on rails under its two short ends (USB-C end and antenna end).
     _, cx, cy, lx, ly, h = POCKETS[1]
     with BuildSketch(Plane.XY.offset(T)):
-        with Locations((cx - lx / 2 + 1.5, cy), (cx + lx / 2 - 1.5, cy)):
-            Rectangle(3, ly)
+        with Locations((cx, cy - ly / 2 + 1.5), (cx, cy + ly / 2 - 1.5)):
+            Rectangle(11.0, 3)   # 11 mm wide: fits between the two pin rows (15.2 mm apart)
     extrude(amount=9)
+    # slot in the -Y wall above the rail so a USB-C plug reaches the board for flashing
+    with BuildSketch(Plane.XY.offset(T + 7.0)):
+        with Locations((cx, cy - ly / 2 - WALL / 2)):
+            Rectangle(12.0, WALL + 1.0)
+    extrude(amount=10, mode=Mode.SUBTRACT)
     # cable notch on the -Y edge (battery lead from the bay's open side)
     with BuildSketch():
         with Locations((-66.0, -W / 2)):

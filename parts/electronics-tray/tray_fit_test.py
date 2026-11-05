@@ -9,7 +9,7 @@ WALL, H = 1.0, 2.0   # fit test only: inner sizes match the tray, walls thinner 
 FRAMES = [
     ("hbridge", 52.0, 52.0, -35.0, 25.0),
     ("xl4015", 28.0, 53.0, 12.0, 25.0),
-    ("esp32", 56.0, 30.0, -30.0, -22.0),
+    ("esp32", 19.0, 23.5, -30.0, -22.0),   # ESP32-C3 SuperMini
     ("mp1584", 24.0, 19.0, 20.0, -22.0),
 ]
 with BuildPart() as p:
@@ -19,10 +19,10 @@ with BuildPart() as p:
                 RectangleRounded(lx + 2 * WALL, ly + 2 * WALL, 3)
                 RectangleRounded(lx, ly, 1.5, mode=Mode.SUBTRACT)
         extrude(amount=H)
-    # ESP32 end rails (as in the tray: pins clear of the antenna and USB ends)
+    # SuperMini end rails (as in the tray: under the two short ends, pins along the long sides)
     with BuildSketch():
-        with Locations((-30.0 - 28 + 1.5, -22.0), (-30.0 + 28 - 1.5, -22.0)):
-            Rectangle(3, 30)
+        with Locations((-30.0, -22.0 - 23.5 / 2 + 1.5), (-30.0, -22.0 + 23.5 / 2 - 1.5)):
+            Rectangle(11.0, 3)   # between the two pin rows, as in the tray
     extrude(amount=H)
 frames = p.part
 plate = import_stl("parts/motor540/plate_fit_test.stl")

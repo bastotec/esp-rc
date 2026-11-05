@@ -9,8 +9,8 @@ Decided 2026-11-05: no commercial ESC or radio. A car ESP32 drives the motor thr
 ```
 2×18650 (2S) ─ BMS 40A ─ XT60 ─ switch ─ 30 A fuse ─┬─ BTS7960 B+/B-  ─ M+/M- ─ 775 motor
                                                    ├─ XL4015 (5.5 V) ─ servo +/-
-                                                   ├─ MP1584 (5.0 V) ─ ESP32 VIN
-                                                   └─ 100k/33k divider ─ ESP32 GPIO34
+                                                   ├─ MP1584 (5.0 V) ─ ESP32-C3 5V pin
+                                                   └─ 100k/33k divider ─ ESP32-C3 GPIO3
 ```
 
 - All grounds common. Motor and battery path in 14 AWG.
@@ -18,31 +18,38 @@ Decided 2026-11-05: no commercial ESC or radio. A car ESP32 drives the motor thr
 - Put a 0.1 µF ceramic capacitor across the 775's terminals to cut brush noise.
 - Divider: 8.4 V full → 2.08 V at the pin; 6.0 V → 1.49 V. Calibrate against a multimeter.
 
-## Car pin map (ESP32 DevKit V1)
+## Car pin map (ESP32-C3 SuperMini)
 
-| ESP32 pin | Goes to | Notes |
+Boards: **ESP32-C3 SuperMini**, already on hand (two: one for the car, one for the controller). Chosen 2026-11-05 over buying DevKit V1s. It has Wi-Fi + ESP-NOW, USB-C for flashing, and a 5V pin that feeds its own 3.3 V regulator. Published size 22.5 × 18 mm (not measured).
+
+**C3 pins to avoid:** GPIO2, 8 and 9 set the boot mode (GPIO8 is also the onboard LED, GPIO9 the BOOT button). GPIO20/21 are the serial port. Only GPIO0–4 have a usable ADC (ADC1).
+
+| C3 pin | Goes to | Notes |
 |---|---|---|
-| GPIO25 | BTS7960 RPWM | forward PWM, ~20 kHz (above hearing) |
-| GPIO26 | BTS7960 LPWM | reverse PWM |
-| GPIO27 | BTS7960 R_EN + L_EN | low = motor off (coast); used by failsafe |
-| 3V3 | BTS7960 VCC | runs the module's logic at 3.3 V to match the ESP32. **Check on the bench** that it switches reliably |
+| GPIO5 | BTS7960 RPWM | forward PWM, ~20 kHz (above hearing) |
+| GPIO6 | BTS7960 LPWM | reverse PWM |
+| GPIO4 | BTS7960 R_EN + L_EN | low = motor off (coast); used by failsafe. Add a **10 kΩ pull-down** to GND so the bridge stays off while the C3 boots |
+| 3V3 | BTS7960 VCC | runs the module's logic at 3.3 V to match the C3. **Check on the bench** that it switches reliably |
 | GND | BTS7960 GND | |
-| GPIO13 | servo signal | 50 Hz, 1000–2000 µs |
-| GPIO34 | battery divider | ADC1 (ADC2 can't be used while Wi-Fi/ESP-NOW is on) |
-| GPIO2 | onboard LED | link status |
+| GPIO7 | servo signal | 50 Hz, 1000–2000 µs |
+| GPIO3 | battery divider | ADC1, works with Wi-Fi on. The C3's ADC reads up to ~2.5 V at 11 dB attenuation; 8.4 V → 2.08 V fits |
+| GPIO8 | onboard LED | link status. Output only after boot; the LED is active-low |
+| GPIO10 | spare | e.g. R_IS/L_IS current sense would need an ADC pin: use GPIO0 or GPIO1 |
 
-Optional later: the BTS7960's R_IS/L_IS current-sense pins to an ADC1 pin for stall protection.
+**Antenna:** many SuperMini batches have a weak or detuned antenna. First lower transmit power in firmware (`WiFi.setTxPower(WIFI_POWER_8_5dBm)`; on these boards that often *improves* range). If range is still short, solder a 31 mm wire antenna to the chip antenna. Reported by others, not tested on our boards.
 
-## Controller pin map (ESP32 DevKit V1)
+Optional later: the BTS7960's R_IS/L_IS current-sense pins to GPIO0/1 for stall protection.
 
-| ESP32 pin | Goes to |
+## Controller pin map (second ESP32-C3 SuperMini)
+
+| C3 pin | Goes to |
 |---|---|
-| GPIO32 | left joystick Y (throttle) |
-| GPIO33 | right joystick X (steering) |
-| GPIO14 | joystick button (input pullup): toggles kid mode |
-| 3V3 / GND | both joysticks' +5V / GND pins: **power them from 3.3 V**, since the ESP32 ADC tops out at 3.3 V |
+| GPIO0 | left joystick Y (throttle) |
+| GPIO1 | right joystick X (steering) |
+| GPIO10 | joystick button (input pullup): toggles kid mode |
+| 3V3 / GND | both joysticks' +5V / GND pins: **power them from 3.3 V**, since the ADC tops out below that |
 
-Powered from any USB power bank. Plugged into a laptop, the same board takes commands over USB serial instead of the joysticks: that's the steering-wheel bridge.
+Powered from any USB power bank over its USB-C port. Plugged into a laptop, the same board takes commands over USB serial instead of the joysticks: that's the steering-wheel bridge.
 
 ## Firmware rules (must hold before a kid drives it)
 
@@ -57,4 +64,4 @@ Test 1–3 with the car on a stand, wheels off the ground: power off the control
 
 ## Range
 
-~100 m is a typical open-field figure for ESP-NOW on DevKit boards. ESP32 has a long-range Wi-Fi mode (`WIFI_PROTOCOL_LR`) that can help. **Not measured on this car** — measure it with the failsafe working, before trusting it.
+~100 m is a typical open-field figure for ESP-NOW on full-size ESP32 boards; the SuperMini's small antenna may do worse (see the antenna note above). The C3 supports the long-range Wi-Fi mode (`WIFI_PROTOCOL_LR`), which can help. **Not measured on this car** — measure it with the failsafe working, before trusting it.

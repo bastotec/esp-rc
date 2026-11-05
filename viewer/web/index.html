@@ -50,7 +50,7 @@ const CATS={ours:{label:'Designed by us (print)',color:0xff8a1f},
  mech:{label:'Bought: motor, servo, wheels, bearings, screws',color:0x4f555d}};
 const OURS={motor_standoff:'540 motor standoff',motor_plate:'540 motor plate',pinion_long:'Long pinion (10T, module 1.3, 3.3 mm bore)',electronics_tray:'Electronics tray v1',battery_module_2S:'2×18650 battery holder'};
 const T5={A01:'Shock mount',A02:'Control arm',A03:'Rear bearing hub (rear upright)',A04:'Front suspension mount (front upright)',A05:'Front bearing hub (steering knuckle)',A06:'Front bearing hub (steering knuckle)',A07:'Steering arm (bellcrank)',A08:'Steering arm (bellcrank)',A09:'Steering bar',A10A:'Steering link (tie rod)',A10B:'Steering link end',A10C:'Steering link end',B01:'Gearbox lid',B02:'Gearbox',B03:'Center chassis',B04:'Front end chassis',B05:'End chassis',B06:'End chassis',B07:'Bumper (TPU)',B08:'Battery clip (TPU)',B10:'Front A plate (TPU)',B11:'Front B plate (TPU)',B12:'Rear A plate (TPU)',B13:'Rear B plate (TPU)',C01:'CV wheel housing',C02:'CV gear housing',C03:'CV cage',C04:'CV inner race',C05:'Driveshaft / torque damper (TPU)',C06:'Main gear hub',C07:'Main gear (50T)',C09:'Front axle',C10:'Wheel spacer'};
-const BOUGHT={motor_540:'540 brushed motor (simplified shape)',h_bridge_IBT2:'IBT_2 BTS7960 H-bridge (simplified block)',esp32_devkit:'ESP32 DevKit (simplified block)',mp1584_5V:'MP1584 step-down, 5 V for the ESP32',xl4015_servo_6V:'XL4015 step-down for the servo',bms_2s_40A:'2S 40 A battery protection board',cell_18650_1:'18650 cell',cell_18650_2:'18650 cell',servo_MG946R:'MG946R steering servo (simplified block)'};
+const BOUGHT={motor_540:'540 brushed motor (simplified shape)',h_bridge_IBT2:'IBT_2 BTS7960 H-bridge (simplified block)',esp32c3_supermini:'ESP32-C3 SuperMini (simplified block)',mp1584_5V:'MP1584 step-down, 5 V for the ESP32',xl4015_servo_6V:'XL4015 step-down for the servo',bms_2s_40A:'2S 40 A battery protection board',cell_18650_1:'18650 cell',cell_18650_2:'18650 cell',servo_MG946R:'MG946R steering servo (simplified block)'};
 function catOf(n,g){if(OURS[n])return'ours';if(g==='electronics')return'elec';if(g==='battery')return'batt';if(g==='tarmo5'&&!n.startsWith('Servo_Horn'))return'tarmo';return'mech'}
 function nice(n,g){if(OURS[n])return OURS[n];if(BOUGHT[n])return BOUGHT[n];const code=n.replace(/_\d+$/,'');
  if(code==='Part_1')return null; if(code.startsWith('Wheel'))return'1/10 wheel, 110 mm, 12 mm hex';if(code==='Servo_Horn')return'Servo horn';
@@ -111,7 +111,7 @@ for(const n in meshes)if(!placed.has(n))put(n,root);
 const C0=V(60,8.1,-15);
 for(const n in meshes){const m=meshes[n],c=m.userData.c,o=c.clone().sub(C0).multiply(V(0.35,0.8,0.5));
  if(c.x>150)o.x+=40;if(c.x<-60)o.x-=40;
- if(['h_bridge_IBT2','esp32_devkit','mp1584_5V','xl4015_servo_6V'].includes(n))o.z+=120;
+ if(['h_bridge_IBT2','esp32c3_supermini','mp1584_5V','xl4015_servo_6V'].includes(n))o.z+=120;
  if(n==='electronics_tray')o.z+=70;
  if(n==='battery_module_2S')o.z-=60;if(n.startsWith('cell_18650'))o.z-=100;if(n==='bms_2s_40A')o.z-=85;if(n.startsWith('B08-T'))o.z-=45;
  const my={motor_540:110,motor_plate:75,motor_standoff:45,pinion_long:20,Part_1_3:20}[n];if(my)o.y+=my;
