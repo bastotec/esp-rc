@@ -119,7 +119,13 @@ for(const n in meshes){const m=meshes[n],c=m.userData.c,o=c.clone().sub(C0).mult
  if(n.startsWith('Wheel'))o.y+=Math.sign(c.y-8.1)*80;
  if(n==='servo_MG946R')o.z+=60;if(n.startsWith('Servo_Horn'))o.z+=35;
  m.userData.ex=o}
-function setExplode(e){for(const n in meshes){const m=meshes[n];m.position.copy(m.userData.base).addScaledVector(m.userData.ex,e)}}
+// Explode offsets live in the fixed car frame, applied after the animation pose,
+// so a spinning wheel or swinging arm never rotates its own offset (it used to orbit).
+const _v=new THREE.Vector3();
+function setExplode(e){root.updateMatrixWorld(true);
+ for(const n in meshes){const m=meshes[n];m.position.copy(m.userData.base);if(!e)continue;
+  _v.copy(m.userData.base);m.parent.localToWorld(_v);root.worldToLocal(_v);
+  _v.addScaledVector(m.userData.ex,e);root.localToWorld(_v);m.parent.worldToLocal(_v);m.position.copy(_v)}}
 
 // ---------- legend ----------
 const counts={};for(const n in meshes)counts[meshes[n].userData.cat]=(counts[meshes[n].userData.cat]||0)+1;
@@ -161,10 +167,10 @@ function pose(){const d2r=Math.PI/180;
   f.gSt.quaternion.setFromAxisAngle(K,delta);f.gSpin.quaternion.setFromAxisAngle(Y,wheel)}}
 const clock=new THREE.Clock();
 renderer.setAnimationLoop(()=>{const dt=Math.min(clock.getDelta(),0.05),sp=+el('speed').value;
- if(exTarget!==null){ex+= (exTarget-ex)*Math.min(1,dt*4);if(Math.abs(exTarget-ex)<0.002){ex=exTarget;exTarget=null}el('explode').value=ex;setExplode(ex)}
+ if(exTarget!==null){ex+= (exTarget-ex)*Math.min(1,dt*4);if(Math.abs(exTarget-ex)<0.002){ex=exTarget;exTarget=null}el('explode').value=ex}
  const ease=(k,on)=>{amp[k]+=((on?1:0)-amp[k])*Math.min(1,dt*3)};
  if(playing){t+=dt*sp;if(el('mDrive').checked)wheel+=dt*sp*2*Math.PI*0.8;ease('steer',el('mSteer').checked);ease('susp',el('mSusp').checked)}
- pose();controls.update();renderer.render(scene,camera)});
+ pose();setExplode(ex);controls.update();renderer.render(scene,camera)});
 setExplode(0);el('load').remove();
 window.__esp={meshes,placed,parts:parts.length,setExplode,pose:()=>{},state:()=>({playing,t,wheel,ex})};
 </script></body></html>
