@@ -44,6 +44,18 @@ BOSS_D, BOSS_H, M2_PILOT = 5.0, 1.5, 1.7
 # 1.5 mm pad in the middle (clear of the corner solder joints), held with
 # double-sided foam tape; the pocket walls stop it sliding.
 MINI_PAD = (11.0, 6.0)
+# MINI-360 corner standoffs: same 1.5 mm height as the pad, under the four corner
+# pads (published hole spacing 15.2-16.4 x 9.0-10.0 mm, so the centres split the
+# range). The 2.2 mm holes swallow the solder tails of the wires soldered on top.
+MINI_SO = (15.8, 9.5)            # (x, y) centre-to-centre
+MINI_SO_D, MINI_SO_HOLE = 3.6, 2.2
+
+# H-bridge: DubstepOwl's BTS7960 standoff (vendor/bts7960-standoff, CC BY) bolts
+# to the floor through the two 4 mm holes in its base frame (40.1 mm apart, middle
+# of two opposite sides) with M3x8 screws into M3 nuts captured in hex pockets
+# under the frame. The IBT_2 then screws onto the four post tops (40 x 40 mm).
+HB_SO_HOLES = 40.1
+NUT_AF, NUT_H, M3_CLR = 5.7, 2.6, 3.3
 
 with BuildPart() as tray:
     with BuildSketch():
@@ -51,6 +63,8 @@ with BuildPart() as tray:
             RectangleRounded(X1 - X0, W, 6)
     extrude(amount=T)
     for name, cx, cy, lx, ly, h in POCKETS:
+        if name == "hbridge":
+            continue   # no pocket: the H-bridge sits on its own standoff
         with BuildSketch(Plane.XY.offset(T)):
             with Locations((cx, cy)):
                 RectangleRounded(lx + 2 * WALL, ly + 2 * WALL, 3)
@@ -65,19 +79,24 @@ with BuildPart() as tray:
     extrude(amount=CB_H + 7, mode=Mode.SUBTRACT)
     # zip-tie slots through the floor beside the H-bridge and ESP32 pockets
     for name, cx, cy, lx, ly, h in POCKETS:
-        if name in ("xl4015", "mp1584"):
+        if name in ("xl4015", "mp1584", "hbridge"):
             continue
         for dx in (-lx / 4, lx / 4):
             with BuildSketch():
                 with Locations((cx + dx, cy - ly / 2 - WALL - 0.5), (cx + dx, cy + ly / 2 + WALL + 0.5)):
                     Rectangle(4.2, 2.4)
             extrude(amount=T + 12, mode=Mode.SUBTRACT)
-    # vents under the H-bridge heatsink (kept clear of the bolt counterbores)
+    # H-bridge standoff: M3 clearance through the floor + captured-nut hex pockets
     _, cx, cy, lx, ly, h = POCKETS[0]
+    hb = [(cx - HB_SO_HOLES / 2, cy), (cx + HB_SO_HOLES / 2, cy)]
     with BuildSketch():
-        with Locations((cx - 6, cy), (cx - 6, cy - 18), (cx - 6, cy + 18)):
-            SlotCenterToCenter(22, 4)
-    extrude(amount=T + 12, mode=Mode.SUBTRACT)
+        with Locations(*hb):
+            Circle(M3_CLR / 2)
+    extrude(amount=T, mode=Mode.SUBTRACT)
+    with BuildSketch(Plane.XY.offset(T - NUT_H)):
+        with Locations(*hb):
+            RegularPolygon(NUT_AF / 3 ** 0.5, 6, major_radius=True)
+    extrude(amount=NUT_H, mode=Mode.SUBTRACT)
     # ESP32-C3 SuperMini: pins run along its long (Y) sides, so the board rests
     # on rails under its two short ends (USB-C end and antenna end).
     _, cx, cy, lx, ly, h = POCKETS[1]
@@ -107,6 +126,15 @@ with BuildPart() as tray:
         with Locations((cx, cy)):
             RectangleRounded(*MINI_PAD, 1.0)
     extrude(amount=BOSS_H)
+    ms = [(cx + sx * MINI_SO[0] / 2, cy + sy * MINI_SO[1] / 2) for sx in (-1, 1) for sy in (-1, 1)]
+    with BuildSketch(Plane.XY.offset(T)):
+        with Locations(*ms):
+            Circle(MINI_SO_D / 2)
+    extrude(amount=BOSS_H)
+    with BuildSketch(Plane.XY.offset(T + BOSS_H)):
+        with Locations(*ms):
+            Circle(MINI_SO_HOLE / 2)
+    extrude(amount=-(BOSS_H + 1.0), mode=Mode.SUBTRACT)
     # cable notch on the -Y edge (battery lead from the bay's open side)
     with BuildSketch():
         with Locations((-66.0, -W / 2)):
