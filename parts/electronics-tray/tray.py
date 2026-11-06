@@ -28,10 +28,22 @@ CB_D, CB_H = 8.4, 2.6    # counterbore for an M4 button head (7.6 x 2.2)
 POCKETS = [
     ("hbridge", 17.0, 0.0, 52.0, 52.0, 6.0),
     ("esp32",   -43.0, -10.0, 19.0, 23.5, 11.0),   # ESP32-C3 SuperMini (22.5 x 18 published) across the car, USB-C to the -Y edge; sits on 9 mm end rails
-    ("mp1584",  -43.0, 17.5, 18.5, 12.5, 4.0),    # MH-MINI-360 on hand (~17.2 x 11.4 published); key kept for the assembly script
+    ("mp1584",  -43.0, 17.5, 20.0, 13.5, 4.0),    # MH-MINI-360: boards vary 17.4-18.6 x 11.1-12.2 (published footprints); 18.5 was too short on the real board. Key kept for the assembly script
     ("xl4015",  -89.0, 0.0, 28.0, 53.0, 4.0),      # turned across the car
 ]
 BOLTS = [(sx * 22.5, sy * 10.0) for sx in (-1, 1) for sy in (-1, 1)]
+
+# XL4015: its four corner holes are also its IN+/IN-/OUT+/OUT- pads, so the board
+# screws down with M2x8 screws (thread-forming into the plastic) that double as
+# terminals: ring terminal + spring washer under each head. Holes 47.9 x 22.5 mm
+# (MaybeCube model, VRAC KiCad footprint). Bosses lift it 1.5 mm to clear the
+# solder bulges and the R050 shunt on the underside.
+XL_HOLES = (22.5, 47.9)          # (x, y) centre-to-centre; board turned across the car
+BOSS_D, BOSS_H, M2_PILOT = 5.0, 1.5, 1.7
+# MINI-360: corner holes are only 0.6-1.0 mm, too small to screw. It sits on a
+# 1.5 mm pad in the middle (clear of the corner solder joints), held with
+# double-sided foam tape; the pocket walls stop it sliding.
+MINI_PAD = (11.0, 6.0)
 
 with BuildPart() as tray:
     with BuildSketch():
@@ -51,8 +63,10 @@ with BuildPart() as tray:
         with Locations(*BOLTS):
             Circle(CB_D / 2)
     extrude(amount=CB_H + 7, mode=Mode.SUBTRACT)
-    # zip-tie slots through the floor beside each pocket
+    # zip-tie slots through the floor beside the H-bridge and ESP32 pockets
     for name, cx, cy, lx, ly, h in POCKETS:
+        if name in ("xl4015", "mp1584"):
+            continue
         for dx in (-lx / 4, lx / 4):
             with BuildSketch():
                 with Locations((cx + dx, cy - ly / 2 - WALL - 0.5), (cx + dx, cy + ly / 2 + WALL + 0.5)):
@@ -76,6 +90,23 @@ with BuildPart() as tray:
         with Locations((cx, cy - ly / 2 - WALL / 2)):
             Rectangle(12.0, WALL + 1.0)
     extrude(amount=10, mode=Mode.SUBTRACT)
+    # XL4015 bosses + M2 pilot holes
+    _, cx, cy, lx, ly, h = POCKETS[3]
+    xl = [(cx + sx * XL_HOLES[0] / 2, cy + sy * XL_HOLES[1] / 2) for sx in (-1, 1) for sy in (-1, 1)]
+    with BuildSketch(Plane.XY.offset(T)):
+        with Locations(*xl):
+            Circle(BOSS_D / 2)
+    extrude(amount=BOSS_H)
+    with BuildSketch(Plane.XY.offset(T + BOSS_H)):
+        with Locations(*xl):
+            Circle(M2_PILOT / 2)
+    extrude(amount=-(T + BOSS_H), mode=Mode.SUBTRACT)
+    # MINI-360 centre pad
+    _, cx, cy, lx, ly, h = POCKETS[2]
+    with BuildSketch(Plane.XY.offset(T)):
+        with Locations((cx, cy)):
+            RectangleRounded(*MINI_PAD, 1.0)
+    extrude(amount=BOSS_H)
     # cable notch on the -Y edge (battery lead from the bay's open side)
     with BuildSketch():
         with Locations((-66.0, -W / 2)):
