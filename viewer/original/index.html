@@ -1,0 +1,173 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tarmo5 original · interactive model</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;font:14px/1.35 -apple-system,system-ui,sans-serif;background:#e9edf1;color:#1d232b}
+#c{position:fixed;inset:0}
+#top{position:fixed;top:0;left:0;right:0;padding:10px 14px calc(8px);padding-top:max(10px,env(safe-area-inset-top));background:linear-gradient(#e9edf1ee,#e9edf100);pointer-events:none}
+#top a{pointer-events:auto;color:#c25f00;font-weight:600}#top b{font-size:17px}#top span{color:#5a6573}
+#load{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;padding:14px 18px;border-radius:12px;box-shadow:0 4px 20px #0002}
+#info{position:fixed;top:58px;left:12px;right:12px;max-width:380px;background:#fffffff2;border-radius:12px;padding:10px 12px;box-shadow:0 4px 16px #0002}
+#info .t{font-weight:600}#info .s{color:#5a6573;font-size:13px}
+#panel{position:fixed;left:0;right:0;bottom:0;background:#fffffff2;border-radius:16px 16px 0 0;box-shadow:0 -4px 20px #0002;padding:10px 12px;padding-bottom:max(10px,env(safe-area-inset-bottom));max-height:52vh;overflow:auto}
+@media(min-width:760px){#panel{left:auto;right:14px;bottom:14px;width:360px;border-radius:16px;max-height:80vh}}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0}
+button{font:inherit;border:0;border-radius:10px;padding:8px 14px;background:#e3e8ee;color:#1d232b}
+#play{background:#1d6fe0;color:#fff;font-weight:600;min-width:96px}
+input[type=range]{flex:1;min-width:120px}
+label{display:flex;align-items:center;gap:5px}
+.lg{display:flex;align-items:center;gap:8px;margin:5px 0}.sw{width:16px;height:16px;border-radius:4px;flex:none}
+.lg .n{color:#5a6573;font-size:12px;margin-left:auto}
+.small{color:#5a6573;font-size:12px}
+details{margin-top:6px}summary{color:#1d6fe0}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
+</head><body>
+<div id="c"></div>
+<div id="top"><b>Tarmo5, original design</b> <span>· stock D3542 motor; ESC and battery not modelled by the designer · <a href="../">compare: esp-rc v1 →</a></span></div>
+<div id="load">Loading 3D model… <span id="pct">0%</span></div>
+<div id="info" hidden></div>
+<div id="panel">
+ <div class="row"><button id="play">▶ Play</button>
+  <label><input type="checkbox" id="mDrive" checked>Drive</label>
+  <label><input type="checkbox" id="mSteer" checked>Steer</label>
+  <label><input type="checkbox" id="mSusp" checked>Suspension</label></div>
+ <div class="row"><button id="exBtn">Explode</button><input type="range" id="explode" min="0" max="1" step="0.01" value="0"></div>
+ <div class="row"><span class="small">Speed</span><input type="range" id="speed" min="0.1" max="2" step="0.05" value="0.6"></div>
+ <div id="legend"></div>
+ <div class="row small"><button id="reset">Reset view</button>Tap a part to see what it is.</div>
+ <details><summary>About this model</summary><p class="small">The stock Tarmo5 as its designer modelled it: every part comes from the community FreeCAD/STEP assembly (tarmo5-fpv fork), in the same coordinates as the esp-rc v1 page, so the two views line up part for part. The designer's model has no ESC, receiver or battery, and the shocks aren't modelled. The animation shows how things move; it doesn't simulate them. Tarmo5 by Tarmo Kaljumäe, CC BY-NC-SA 4.0.</p></details>
+</div>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+
+const CATS={tarmo:{label:'Tarmo5 printed parts',color:0x8fa8c2},
+ mech:{label:'Bought: motor, servo, wheels, bearings, screws',color:0x4f555d}};
+const OURS={motor_standoff:'540 motor standoff',motor_plate:'540 motor plate',pinion_long:'Long pinion (10T, module 1.3, 3.3 mm bore)',electronics_tray:'Electronics tray v1',battery_module_2S:'2×18650 battery holder'};
+const T5={A01:'Shock mount',A02:'Control arm',A03:'Rear bearing hub (rear upright)',A04:'Front suspension mount (front upright)',A05:'Front bearing hub (steering knuckle)',A06:'Front bearing hub (steering knuckle)',A07:'Steering arm (bellcrank)',A08:'Steering arm (bellcrank)',A09:'Steering bar',A10A:'Steering link (tie rod)',A10B:'Steering link end',A10C:'Steering link end',B01:'Gearbox lid',B02:'Gearbox',B03:'Center chassis',B04:'Front end chassis',B05:'End chassis',B06:'End chassis',B07:'Bumper (TPU)',B08:'Battery clip (TPU)',B10:'Front A plate (TPU)',B11:'Front B plate (TPU)',B12:'Rear A plate (TPU)',B13:'Rear B plate (TPU)',C01:'CV wheel housing',C02:'CV gear housing',C03:'CV cage',C04:'CV inner race',C05:'Driveshaft / torque damper (TPU)',C06:'Main gear hub',C07:'Main gear (50T)',C09:'Front axle',C10:'Wheel spacer'};
+const BOUGHT={D3542_OUTRUNNER_0:'D3542 1450KV brushless motor (stock)',Servo_0:'Steering servo (stock, DS3218 class)',motor_540:'540 brushed motor (simplified shape)',h_bridge_IBT2:'IBT_2 BTS7960 H-bridge, heatsink down (simplified block)',hbridge_standoff:'BTS7960 standoff by DubstepOwl (Printables 655891, CC BY)',esp32c3_supermini:'ESP32-C3 SuperMini (simplified block)',mp1584_5V:'MH-MINI-360 step-down, 5 V for the ESP32',xl4015_servo_6V:'XL4015 step-down for the servo',bms_2s_40A:'2S 40 A battery protection board',cell_18650_1:'18650 cell',cell_18650_2:'18650 cell',servo_MG946R:'MG946R steering servo (simplified block)'};
+function catOf(n,g){if(OURS[n])return'ours';if(n==='hbridge_standoff')return'other';if(g==='electronics')return'elec';if(g==='battery')return'batt';if(g==='tarmo5'&&!n.startsWith('Servo_Horn'))return'tarmo';return'mech'}
+function nice(n,g){if(OURS[n])return OURS[n];if(BOUGHT[n])return BOUGHT[n];const code=n.replace(/_\d+$/,'');
+ if(code==='Part_1')return null; if(code.startsWith('Wheel'))return'1/10 wheel, 110 mm, 12 mm hex';if(code==='Servo_Horn')return'Servo horn';
+ if(code.startsWith('M4x'))return code.replace('-Screw',' screw');if(code==='M3-Nut')return'M3 nut';
+ const k=code.replace(/-T$/,'');return (T5[k]||T5[k.slice(0,3)]||code)+' · Tarmo5 '+code}
+
+const el=id=>document.getElementById(id);
+const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+el('c').appendChild(renderer.domElement);
+const scene=new THREE.Scene();scene.background=new THREE.Color(0xe9edf1);
+const camera=new THREE.PerspectiveCamera(38,1,2,6000);
+const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;
+scene.add(new THREE.HemisphereLight(0xffffff,0x8a939c,1.6));
+const sun=new THREE.DirectionalLight(0xffffff,1.6);sun.position.set(300,600,400);scene.add(sun);
+const fill=new THREE.DirectionalLight(0xffffff,0.6);fill.position.set(-400,200,-300);scene.add(fill);
+const root=new THREE.Group();root.rotation.x=-Math.PI/2;root.userData.P=new THREE.Vector3();scene.add(root);
+function resize(){const w=innerWidth,h=innerHeight;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix()}
+addEventListener('resize',resize);resize();
+function home(){camera.position.set(520,330,520);controls.target.set(40,-10,0);controls.update()}home();
+
+const V=(x,y,z)=>new THREE.Vector3(x,y,z);
+const meshes={},info={};
+function G(parent,P){const g=new THREE.Group();g.userData.P=P.clone();g.position.copy(P).sub(parent.userData.P);parent.add(g);return g}
+const placed=new Set();
+function put(n,g){const m=meshes[n];if(!m){console.warn('missing part',n);return}g.add(m);m.userData.base=g.userData.P.clone().negate();m.position.copy(m.userData.base);placed.add(n)}
+
+const loader=new GLTFLoader();
+const [parts]=await Promise.all([fetch('parts.json').then(r=>r.json())]);
+for(const p of parts)info[p.name]=p;
+const gltf=await new Promise((res,rej)=>loader.load('car.glb',res,e=>{if(e.total)el('pct').textContent=Math.round(100*e.loaded/e.total)+'%'},rej));
+gltf.scene.updateMatrixWorld(true);
+gltf.scene.traverse(o=>{if(!o.isMesh)return;const n=(o.name in info)?o.name:(o.parent&&o.parent.name in info?o.parent.name:o.name);
+ const g=o.geometry.clone();g.applyMatrix4(o.matrixWorld);g.deleteAttribute('normal');g.computeBoundingBox();
+ const p=info[n]||{group:'tarmo5'};const cat=catOf(n,p.group);
+ const mat=new THREE.MeshStandardMaterial({color:CATS[cat].color,roughness:0.62,metalness:cat==='mech'?0.25:0.05,flatShading:true});
+ const m=new THREE.Mesh(g,mat);m.name=n;m.userData.cat=cat;m.userData.c=g.boundingBox.getCenter(new THREE.Vector3());meshes[n]=m});
+
+// ---------- rig: pivots measured from the CAD model (car coords, mm, X forward, Y left, Z up) ----------
+const X=V(1,0,0),Y=V(0,1,0),K=V(-0.259,0,0.966).normalize(),AF=V(0.966,0,0.259).normalize();
+const motor=G(root,V(-129,8.1,-13.56));['C08_0','D3542_OUTRUNNER_0','Part_1_3'].forEach(n=>put(n,motor));
+const gear=G(root,V(-90,8.1,-13.6));['C07_0','C06_0','C01_1','C02_0','Part_1_4','Part_1_5'].forEach(n=>put(n,gear));
+const rear=[{s:1,U:'A02_1',L:'A02_2',iU:V(-90.5,47.1,3.4),iL:V(-90.5,47.1,-30.6),v:V(0,73.9,-17.7),up:['A03_0','Part_1_12','Part_1_13'],wc:V(-89.9,132.8,-31.3),spin:['C02_1','C10_3','Wheel_110mm_1'],sh:['C03_1','C04_1','C05-T_1','C04_3','C03_3'],si:V(-90,46.2,-13.55),so:V(-89.9,117.5,-31.35),ph:0},
+ {s:-1,U:'A02_3',L:'A02_0',iU:V(-90.5,-30.9,3.4),iL:V(-90.5,-30.9,-30.6),v:V(0,-73.9,-17.7),up:['A03_1','Part_1_6','Part_1_7'],wc:V(-91.1,-116.5,-31.3),spin:['C01_0','C10_2','Wheel_110mm_3'],sh:['C03_0','C04_2','C05-T_0','C04_0','C03_2'],si:V(-90,-31.6,-13.55),so:V(-91.1,-103,-31.35),ph:Math.PI}];
+for(const r of rear){r.gU=G(root,r.iU);put(r.U,r.gU);r.gL=G(root,r.iL);put(r.L,r.gL);r.gUp=G(root,V(0,0,0));r.up.forEach(n=>put(n,r.gUp));
+ r.gSpin=G(r.gUp,r.wc);r.spin.forEach(n=>put(n,r.gSpin));r.gSh=G(root,r.si);r.sh.forEach(n=>put(n,r.gSh));r.rest=r.so.clone().sub(r.si).normalize()}
+const front=[{s:1,U:'A02_5',L:'A02_4',iU:V(191.8,45.1,7.8),iL:V(201.5,45.1,-24.8),v:V(1.4,83.5,-17.8),up:['A04_0'],kp:V(197.2,128.6,-25),st:['A06_0','A10B_1','M4x16-Screw_2'],wc:V(197.0,137.55,-24.1),spin:['C09_1','C10_1','Part_1_10','Part_1_11','Wheel_110mm_0'],ph:Math.PI/2},
+ {s:-1,U:'A02_7',L:'A02_6',iU:V(191.8,-28.9,7.8),iL:V(201.5,-28.9,-24.8),v:V(1.4,-83.5,-17.8),up:['A04_1'],kp:V(198.5,-112.4,-25),st:['A05_0','A10B_0','M4x16-Screw_0'],wc:V(198.4,-129.3,-23.7),spin:['C09_0','C10_0','Part_1_8','Part_1_9','Wheel_110mm_2'],ph:3*Math.PI/2}];
+for(const f of front){f.gU=G(root,f.iU);put(f.U,f.gU);f.gL=G(root,f.iL);put(f.L,f.gL);f.gUp=G(root,V(0,0,0));f.up.forEach(n=>put(n,f.gUp));
+ f.gSt=G(f.gUp,f.kp);f.st.forEach(n=>put(n,f.gSt));f.gSpin=G(f.gSt,f.wc);f.spin.forEach(n=>put(n,f.gSpin))}
+const bcL=G(root,V(137.3,-39.4,-17));['A07_0','A10C_0','M4x16-Screw_1'].forEach(n=>put(n,bcL));
+const bcR=G(root,V(137.3,55.6,-17));['A08_0','A10C_1','M4x16-Screw_3'].forEach(n=>put(n,bcR));
+const tie=G(root,V(0,0,0));['A10A_0','A10A_1'].forEach(n=>put(n,tie));
+const bar=G(root,V(0,0,0));put('A09_0',bar);
+const horn=G(root,V(138.0,8.2,-11.0));put('Servo_Horn_0',horn);
+for(const n in meshes)if(!placed.has(n))put(n,root);
+
+// ---------- explode offsets ----------
+const C0=V(60,8.1,-15);
+for(const n in meshes){const m=meshes[n],c=m.userData.c,o=c.clone().sub(C0).multiply(V(0.35,0.8,0.5));
+ if(c.x>150)o.x+=40;if(c.x<-60)o.x-=40;
+ if(['h_bridge_IBT2','esp32c3_supermini','mp1584_5V','xl4015_servo_6V'].includes(n))o.z+=120;if(n==='hbridge_standoff')o.z+=60;
+ if(n==='electronics_tray')o.z+=70;
+ if(n==='battery_module_2S')o.z-=60;if(n.startsWith('cell_18650'))o.z-=100;if(n==='bms_2s_40A')o.z-=85;if(n.startsWith('B08-T'))o.z-=45;
+ const my={D3542_OUTRUNNER_0:110,B09_0:75,C08_0:20,motor_540:110,motor_plate:75,motor_standoff:45,pinion_long:20,Part_1_3:20}[n];if(my)o.y+=my;
+ if(n.startsWith('B01'))o.x-=40;
+ if(n.startsWith('Wheel'))o.y+=Math.sign(c.y-8.1)*80;
+ if(n==='servo_MG946R'||n==='Servo_0')o.z+=60;if(n.startsWith('Servo_Horn'))o.z+=35;
+ m.userData.ex=o}
+// Explode offsets live in the fixed car frame, applied after the animation pose,
+// so a spinning wheel or swinging arm never rotates its own offset (it used to orbit).
+const _v=new THREE.Vector3();
+function setExplode(e){root.updateMatrixWorld(true);
+ for(const n in meshes){const m=meshes[n];m.position.copy(m.userData.base);if(!e)continue;
+  _v.copy(m.userData.base);m.parent.localToWorld(_v);root.worldToLocal(_v);
+  _v.addScaledVector(m.userData.ex,e);root.localToWorld(_v);m.parent.worldToLocal(_v);m.position.copy(_v)}}
+
+// ---------- legend ----------
+const counts={};for(const n in meshes)counts[meshes[n].userData.cat]=(counts[meshes[n].userData.cat]||0)+1;
+for(const k in CATS){const d=document.createElement('label');d.className='lg';
+ d.innerHTML=`<input type="checkbox" checked><span class="sw" style="background:#${CATS[k].color.toString(16).padStart(6,'0')}"></span><span>${CATS[k].label}</span><span class="n">${counts[k]||0}</span>`;
+ d.querySelector('input').onchange=e=>{for(const n in meshes)if(meshes[n].userData.cat===k)meshes[n].visible=e.target.checked};el('legend').appendChild(d)}
+
+// ---------- picking ----------
+const ray=new THREE.Raycaster(),ptr=new THREE.Vector2();let down=null,sel=null;
+renderer.domElement.addEventListener('pointerdown',e=>down=[e.clientX,e.clientY]);
+renderer.domElement.addEventListener('pointerup',e=>{if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>6)return;
+ ptr.set(e.clientX/innerWidth*2-1,-e.clientY/innerHeight*2+1);ray.setFromCamera(ptr,camera);
+ const hit=ray.intersectObjects(Object.values(meshes).filter(m=>m.visible),false)[0];
+ if(sel)sel.material.emissive.setHex(0);sel=null;const box=el('info');
+ if(!hit){box.hidden=true;return}sel=hit.object;sel.material.emissive.setHex(0x553300);
+ const n=sel.name,p=info[n]||{},bb=p.bmin?p.bmax.map((v,i)=>Math.round(v-p.bmin[i])).join(' × ')+' mm':'';
+ let what=nice(n,p.group);if(!what)what=(p.bmax&&p.bmax[0]-p.bmin[0]>300)?'M3 threaded rod, 350 mm':'6802-2RS bearing (15×24×5)';
+ box.innerHTML=`<div class="t">${what}</div><div class="s">${CATS[sel.userData.cat].label} · ${bb}</div><div class="s">part id: ${n}</div>`;box.hidden=false});
+
+// ---------- animation ----------
+let playing=false,t=0,wheel=0,ex=0,exTarget=null,amp={steer:0,susp:0};
+el('play').onclick=()=>{playing=!playing;el('play').textContent=playing?'❚❚ Pause':'▶ Play'};
+el('explode').oninput=e=>{exTarget=null;ex=+e.target.value;setExplode(ex)};
+el('exBtn').onclick=()=>{exTarget=ex>0.5?0:1;el('exBtn').textContent=exTarget?'Assemble':'Explode'};
+el('reset').onclick=home;
+const q=new THREE.Quaternion(),q2=new THREE.Quaternion();
+function pose(){const d2r=Math.PI/180;
+ const delta=amp.steer*25*d2r*Math.sin(t*2*Math.PI/4);
+ const dyTie=-27.7*Math.sin(delta),gam=Math.asin(Math.max(-1,Math.min(1,dyTie/26.5))),dyBar=-20.7*Math.sin(gam),beta=Math.asin(Math.max(-1,Math.min(1,-dyBar/22.5)));
+ bcL.quaternion.setFromAxisAngle(K,gam);bcR.quaternion.setFromAxisAngle(K,gam);tie.position.set(0,dyTie,0);bar.position.set(0,dyBar,0);horn.quaternion.setFromAxisAngle(K,beta);
+ motor.quaternion.setFromAxisAngle(Y,-5*wheel);gear.quaternion.setFromAxisAngle(Y,wheel);
+ for(const r of rear){const th=amp.susp*8*d2r*Math.sin(t*Math.PI+r.ph),a=r.s*th;
+  r.gU.quaternion.setFromAxisAngle(X,a);r.gL.quaternion.setFromAxisAngle(X,a);
+  const d=r.v.clone().applyAxisAngle(X,a).sub(r.v);r.gUp.position.copy(d);r.gSpin.quaternion.setFromAxisAngle(Y,wheel);
+  const nd=r.so.clone().add(d).sub(r.si).normalize();q.setFromUnitVectors(r.rest,nd);q2.setFromAxisAngle(r.rest,wheel);r.gSh.quaternion.copy(q).multiply(q2)}
+ for(const f of front){const th=amp.susp*8*d2r*Math.sin(t*Math.PI+f.ph),a=f.s*th;
+  f.gU.quaternion.setFromAxisAngle(AF,a);f.gL.quaternion.setFromAxisAngle(AF,a);
+  const d=f.v.clone().applyAxisAngle(AF,a).sub(f.v);f.gUp.position.copy(d);
+  f.gSt.quaternion.setFromAxisAngle(K,delta);f.gSpin.quaternion.setFromAxisAngle(Y,wheel)}}
+const clock=new THREE.Clock();
+renderer.setAnimationLoop(()=>{const dt=Math.min(clock.getDelta(),0.05),sp=+el('speed').value;
+ if(exTarget!==null){ex+= (exTarget-ex)*Math.min(1,dt*4);if(Math.abs(exTarget-ex)<0.002){ex=exTarget;exTarget=null}el('explode').value=ex}
+ const ease=(k,on)=>{amp[k]+=((on?1:0)-amp[k])*Math.min(1,dt*3)};
+ if(playing){t+=dt*sp;if(el('mDrive').checked)wheel+=dt*sp*2*Math.PI*0.8;ease('steer',el('mSteer').checked);ease('susp',el('mSusp').checked)}
+ pose();setExplode(ex);controls.update();renderer.render(scene,camera)});
+setExplode(0);el('load').remove();
+window.__esp={meshes,placed,parts:parts.length,setExplode,pose:()=>{},state:()=>({playing,t,wheel,ex})};
+</script></body></html>

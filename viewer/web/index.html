@@ -5,7 +5,7 @@
 *{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;font:14px/1.35 -apple-system,system-ui,sans-serif;background:#e9edf1;color:#1d232b}
 #c{position:fixed;inset:0}
 #top{position:fixed;top:0;left:0;right:0;padding:10px 14px calc(8px);padding-top:max(10px,env(safe-area-inset-top));background:linear-gradient(#e9edf1ee,#e9edf100);pointer-events:none}
-#top b{font-size:17px}#top span{color:#5a6573}
+#top a{pointer-events:auto;color:#c25f00;font-weight:600}#top b{font-size:17px}#top span{color:#5a6573}
 #load{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;padding:14px 18px;border-radius:12px;box-shadow:0 4px 20px #0002}
 #info{position:fixed;top:58px;left:12px;right:12px;max-width:380px;background:#fffffff2;border-radius:12px;padding:10px 12px;box-shadow:0 4px 16px #0002}
 #info .t{font-weight:600}#info .s{color:#5a6573;font-size:13px}
@@ -24,7 +24,7 @@ details{margin-top:6px}summary{color:#1d6fe0}
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
 </head><body>
 <div id="c"></div>
-<div id="top"><b>esp-rc v1</b> <span>· rolling chassis, Tarmo5-based</span></div>
+<div id="top"><b>esp-rc v1</b> <span>· rolling chassis, Tarmo5-based · <a href="original/index.html">compare: original Tarmo5 →</a></span></div>
 <div id="load">Loading 3D model… <span id="pct">0%</span></div>
 <div id="info" hidden></div>
 <div id="panel">
