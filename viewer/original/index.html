@@ -24,7 +24,7 @@ details{margin-top:6px}summary{color:#1d6fe0}
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
 </head><body>
 <div id="c"></div>
-<div id="top"><b>Tarmo5, original design</b> <span>· stock D3542 motor; ESC and battery not modelled by the designer · <a href="../">compare: esp-rc v1 →</a></span></div>
+<div id="top"><b>Tarmo5, original design</b> <span>· stock D3542 motor; battery, ESC and receiver added as typical blocks · <a href="../">compare: esp-rc v1 →</a></span></div>
 <div id="load">Loading 3D model… <span id="pct">0%</span></div>
 <div id="info" hidden></div>
 <div id="panel">
@@ -36,7 +36,7 @@ details{margin-top:6px}summary{color:#1d6fe0}
  <div class="row"><span class="small">Speed</span><input type="range" id="speed" min="0.1" max="2" step="0.05" value="0.6"></div>
  <div id="legend"></div>
  <div class="row small"><button id="reset">Reset view</button>Tap a part to see what it is.</div>
- <details><summary>About this model</summary><p class="small">The stock Tarmo5 as its designer modelled it: every part comes from the community FreeCAD/STEP assembly (tarmo5-fpv fork), in the same coordinates as the esp-rc v1 page, so the two views line up part for part. The designer's model has no ESC, receiver or battery, and the shocks aren't modelled. The animation shows how things move; it doesn't simulate them. Tarmo5 by Tarmo Kaljumäe, CC BY-NC-SA 4.0.</p></details>
+ <details><summary>About this model</summary><p class="small">The stock Tarmo5 as its designer modelled it: every part comes from the community FreeCAD/STEP assembly (tarmo5-fpv fork), in the same coordinates as the esp-rc v1 page, so the two views line up part for part. The designer's model has no ESC, receiver or battery, so the three green blocks are added by us as simple stand-ins for a fair comparison. The battery (Zeee 3S 11.1 V 3200 mAh, 138 × 46 × 26 mm; the real pack is about 47 mm wide, a hair wider than the gap left between the bay wall and the clip tooth) sits in the centre chassis B03's battery bay, where the design puts it, held by the battery clip B08-T, which is part of the designer's assembly; its position comes from the design (bay and clip). The ESC (50 × 40 × 35 mm with fan) and the receiver (35 × 22 × 12 mm) sit on top of B03 where built Tarmo5s usually carry them; those positions are typical, not from the designer's files, and their sizes are typical too, not his exact parts. The shocks aren't modelled. The animation shows how things move; it doesn't simulate them. Tarmo5 by Tarmo Kaljumäe, CC BY-NC-SA 4.0.</p></details>
 </div>
 <script type="module">
 import * as THREE from 'three';
@@ -44,10 +44,11 @@ import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 
 const CATS={tarmo:{label:'Tarmo5 printed parts',color:0x8fa8c2},
- mech:{label:'Bought: motor, servo, wheels, bearings, screws',color:0x4f555d}};
+ mech:{label:'Bought: motor, servo, wheels, bearings, screws',color:0x4f555d},
+ elec:{label:'Electronics (typical placement)',color:0x2fae63}};
 const OURS={motor_standoff:'540 motor standoff',motor_plate:'540 motor plate',pinion_long:'Long pinion (10T, module 1.3, 3.3 mm bore)',electronics_tray:'Electronics tray v1',battery_module_2S:'2×18650 battery holder'};
 const T5={A01:'Shock mount',A02:'Control arm',A03:'Rear bearing hub (rear upright)',A04:'Front suspension mount (front upright)',A05:'Front bearing hub (steering knuckle)',A06:'Front bearing hub (steering knuckle)',A07:'Steering arm (bellcrank)',A08:'Steering arm (bellcrank)',A09:'Steering bar',A10A:'Steering link (tie rod)',A10B:'Steering link end',A10C:'Steering link end',B01:'Gearbox lid',B02:'Gearbox',B03:'Center chassis',B04:'Front end chassis',B05:'End chassis',B06:'End chassis',B07:'Bumper (TPU)',B08:'Battery clip (TPU)',B10:'Front A plate (TPU)',B11:'Front B plate (TPU)',B12:'Rear A plate (TPU)',B13:'Rear B plate (TPU)',C01:'CV wheel housing',C02:'CV gear housing',C03:'CV cage',C04:'CV inner race',C05:'Driveshaft / torque damper (TPU)',C06:'Main gear hub',C07:'Main gear (50T)',C09:'Front axle',C10:'Wheel spacer'};
-const BOUGHT={D3542_OUTRUNNER_0:'D3542 1450KV brushless motor (stock)',Servo_0:'Steering servo (stock, DS3218 class)',motor_540:'540 brushed motor (simplified shape)',h_bridge_IBT2:'IBT_2 BTS7960 H-bridge, heatsink down (simplified block)',hbridge_standoff:'BTS7960 standoff by DubstepOwl (Printables 655891, CC BY)',esp32c3_supermini:'ESP32-C3 SuperMini (simplified block)',mp1584_5V:'MH-MINI-360 step-down, 5 V for the ESP32',xl4015_servo_6V:'XL4015 step-down for the servo',bms_2s_40A:'2S 40 A battery protection board',cell_18650_1:'18650 cell',cell_18650_2:'18650 cell',servo_MG946R:'MG946R steering servo (simplified block)'};
+const BOUGHT={zeee_3s_lipo_3200:'Zeee 3S LiPo 11.1 V 3200 mAh (simplified block; position from the battery bay + clip B08-T)',esc_1_10_brushless:'1/10 brushless car ESC with fan (typical size and placement, not from the designer)',receiver_2ch:'Radio receiver (typical size and placement, not from the designer)',D3542_OUTRUNNER_0:'D3542 1450KV brushless motor (stock)',Servo_0:'Steering servo (stock, DS3218 class)',motor_540:'540 brushed motor (simplified shape)',h_bridge_IBT2:'IBT_2 BTS7960 H-bridge, heatsink down (simplified block)',hbridge_standoff:'BTS7960 standoff by DubstepOwl (Printables 655891, CC BY)',esp32c3_supermini:'ESP32-C3 SuperMini (simplified block)',mp1584_5V:'MH-MINI-360 step-down, 5 V for the ESP32',xl4015_servo_6V:'XL4015 step-down for the servo',bms_2s_40A:'2S 40 A battery protection board',cell_18650_1:'18650 cell',cell_18650_2:'18650 cell',servo_MG946R:'MG946R steering servo (simplified block)'};
 function catOf(n,g){if(OURS[n])return'ours';if(n==='hbridge_standoff')return'other';if(g==='electronics')return'elec';if(g==='battery')return'batt';if(g==='tarmo5'&&!n.startsWith('Servo_Horn'))return'tarmo';return'mech'}
 function nice(n,g){if(OURS[n])return OURS[n];if(BOUGHT[n])return BOUGHT[n];const code=n.replace(/_\d+$/,'');
  if(code==='Part_1')return null; if(code.startsWith('Wheel'))return'1/10 wheel, 110 mm, 12 mm hex';if(code==='Servo_Horn')return'Servo horn';
@@ -111,6 +112,7 @@ for(const n in meshes){const m=meshes[n],c=m.userData.c,o=c.clone().sub(C0).mult
  if(['h_bridge_IBT2','esp32c3_supermini','mp1584_5V','xl4015_servo_6V'].includes(n))o.z+=120;if(n==='hbridge_standoff')o.z+=60;
  if(n==='electronics_tray')o.z+=70;
  if(n==='battery_module_2S')o.z-=60;if(n.startsWith('cell_18650'))o.z-=100;if(n==='bms_2s_40A')o.z-=85;if(n.startsWith('B08-T'))o.z-=45;
+ if(n==='zeee_3s_lipo_3200')o.z-=70;if(n==='esc_1_10_brushless')o.z+=70;if(n==='receiver_2ch')o.z+=95;
  const my={D3542_OUTRUNNER_0:110,B09_0:75,C08_0:20,motor_540:110,motor_plate:75,motor_standoff:45,pinion_long:20,Part_1_3:20}[n];if(my)o.y+=my;
  if(n.startsWith('B01'))o.x-=40;
  if(n.startsWith('Wheel'))o.y+=Math.sign(c.y-8.1)*80;

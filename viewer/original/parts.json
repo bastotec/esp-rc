@@ -1726,5 +1726,53 @@
 -27.39
 ],
 "bbox_change_mm": 0.0
+},
+{
+"name": "zeee_3s_lipo_3200",
+"group": "electronics",
+"faces": 12,
+"bmin": [
+-35.6,
+-15.7,
+-26.6
+],
+"bmax": [
+102.4,
+29.9,
+-0.6
+],
+"bbox_change_mm": 0.0
+},
+{
+"name": "esc_1_10_brushless",
+"group": "electronics",
+"faces": 12,
+"bmin": [
+38.5,
+-11.86,
+16.4
+],
+"bmax": [
+88.5,
+28.14,
+51.4
+],
+"bbox_change_mm": 0.0
+},
+{
+"name": "receiver_2ch",
+"group": "electronics",
+"faces": 12,
+"bmin": [
+-5.5,
+-2.86,
+16.4
+],
+"bmax": [
+29.5,
+19.14,
+28.4
+],
+"bbox_change_mm": 0.0
 }
 ]
