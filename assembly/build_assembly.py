@@ -48,20 +48,29 @@ add("motor_540", "motor", trimesh.load(P("assembly", "ours_placed", "car_motor54
 TRAY = np.array([64.4, 8.15, 16.44]); FLOOR = TRAY[2] + 5.0
 add("electronics_tray", "ours_printed", T(trimesh.load(P("parts", "electronics-tray", "tray_v1.stl")), TRAY))
 hx, hy = TRAY[0] + 17.0, TRAY[1]
-hb = [box((46, 46, 22.0), (hx, hy, FLOOR)), box((50, 50, 1.6), (hx, hy, FLOOR + 22.0)),
-      cyl(5.0, 17.0, (hx - 17, hy + 17, FLOOR + 23.6 + 8.5)), box((8, 22, 10), (hx + 19, hy, FLOOR + 23.6)),
-      box((16, 9, 3), (hx - 10, hy - 14, FLOOR + 23.6)), box((5, 10, 8.5), (hx - 21, hy - 15, FLOOR + 23.6))]
-HB_TOP = FLOOR + 23.6 + 17.0
+# H-bridge on DubstepOwl's BTS7960 standoff (vendor/, CC BY): base on the tray floor,
+# bolted through the tray's two M3 holes; the IBT_2 screws onto the four post tops.
+SO = trimesh.load(P("vendor", "bts7960-standoff", "standoff_upright.stl"))
+so_c = (SO.bounds[0] + SO.bounds[1]) / 2
+SO = T(SO, (hx - so_c[0], hy - so_c[1], FLOOR - SO.bounds[0][2]))
+add("hbridge_standoff", "ours_printed", SO)
+PB = SO.bounds[1][2]                       # post tops = underside of the IBT_2 PCB
+HS_X, HS_Y, HS_H = 35.0, 50.0, 23.4        # heatsink: 8 fins run along X (perpendicular to the terminal block)
+hb = [box((HS_X, HS_Y, HS_H), (hx, hy, PB - HS_H)), box((50, 50, 1.6), (hx, hy, PB)),
+      cyl(5.0, 17.0, (hx - 17, hy + 17, PB + 1.6 + 8.5)), box((8, 22, 10), (hx + 19, hy, PB + 1.6)),
+      box((16, 9, 3), (hx - 10, hy - 14, PB + 1.6)), box((5, 10, 8.5), (hx - 21, hy - 15, PB + 1.6))]
+HB_TOP = PB + 1.6 + 17.0
 add("h_bridge_IBT2", "electronics", U(hb))
 ex, ey = TRAY[0] - 43.0, TRAY[1] - 10.0; eb = FLOOR + 9.0
 add("esp32c3_supermini", "electronics", U([box((18.0, 22.5, 1.6), (ex, ey, eb)), box((13, 13, 2.4), (ex, ey + 3.5, eb + 1.6)),
                                        box((9, 7.5, 3.2), (ex, ey - 9.5, eb + 1.6)),
                                        box((2.5, 20.3, 8.4), (ex - 7.6, ey, eb - 8.4)), box((2.5, 20.3, 8.4), (ex + 7.6, ey, eb - 8.4))]))
 mx, my = TRAY[0] - 43.0, TRAY[1] + 17.5
-add("mp1584_5V", "electronics", U([box((22, 17, 1.6), (mx, my, FLOOR)), box((6, 6, 3), (mx + 3, my, FLOOR + 1.6))]))
+add("mp1584_5V", "electronics", U([box((18.0, 11.5, 1.6), (mx, my, FLOOR + 1.5)), box((6, 6, 3), (mx + 3, my, FLOOR + 3.1))]))   # MH-MINI-360 on its 1.5 mm pad
 xx, xy = TRAY[0] - 89.0, TRAY[1]
-add("xl4015_servo_6V", "electronics", U([box((26, 51, 1.6), (xx, xy, FLOOR)), cyl(5, 13, (xx - 5, xy - 15, FLOOR + 1.6 + 6.5)),
-                                        box((12, 12, 8), (xx + 4, xy + 2, FLOOR + 1.6)), box((10, 16, 10), (xx + 5, xy + 17, FLOOR + 1.6))]))
+XF = FLOOR + 1.5   # on its four 1.5 mm M2 bosses
+add("xl4015_servo_6V", "electronics", U([box((26, 51, 1.6), (xx, xy, XF)), cyl(5, 13, (xx - 5, xy - 15, XF + 1.6 + 6.5)),
+                                        box((12, 12, 8), (xx + 4, xy + 2, XF + 1.6)), box((10, 16, 10), (xx + 5, xy + 17, XF + 1.6))]))
 
 # ---------------- ours: battery ----------------
 BAYF = -27.6 + 0.2; MOD = trimesh.load(P("parts", "battery", "battery_module_2s.stl"))

@@ -2,7 +2,7 @@
 {
 "name": "B03_0",
 "group": "tarmo5",
-"faces": 3063,
+"faces": 3225,
 "bmin": [
 -65.12,
 -20.86,
@@ -18,7 +18,7 @@
 {
 "name": "B08-T_0",
 "group": "tarmo5",
-"faces": 648,
+"faces": 682,
 "bmin": [
 -50.12,
 -28.86,
@@ -34,7 +34,7 @@
 {
 "name": "B02_0",
 "group": "tarmo5",
-"faces": 1506,
+"faces": 1586,
 "bmin": [
 -105.52,
 -20.86,
@@ -50,7 +50,7 @@
 {
 "name": "B04_0",
 "group": "tarmo5",
-"faces": 6484,
+"faces": 6830,
 "bmin": [
 109.88,
 -45.86,
@@ -82,7 +82,7 @@
 {
 "name": "B06_0",
 "group": "tarmo5",
-"faces": 1347,
+"faces": 1419,
 "bmin": [
 210.17,
 -20.86,
@@ -98,7 +98,7 @@
 {
 "name": "A01_0",
 "group": "tarmo5",
-"faces": 1394,
+"faces": 1468,
 "bmin": [
 -115.52,
 -70.86,
@@ -114,7 +114,7 @@
 {
 "name": "A01_1",
 "group": "tarmo5",
-"faces": 1394,
+"faces": 1468,
 "bmin": [
 187.49,
 -70.86,
@@ -130,7 +130,7 @@
 {
 "name": "B13-T_0",
 "group": "tarmo5",
-"faces": 1202,
+"faces": 1266,
 "bmin": [
 -114.52,
 -39.36,
@@ -146,7 +146,7 @@
 {
 "name": "B12-T_0",
 "group": "tarmo5",
-"faces": 1444,
+"faces": 1522,
 "bmin": [
 -75.12,
 -37.36,
@@ -162,7 +162,7 @@
 {
 "name": "B01_0",
 "group": "tarmo5",
-"faces": 2082,
+"faces": 2192,
 "bmin": [
 -145.52,
 -20.86,
@@ -178,7 +178,7 @@
 {
 "name": "B11-T_0",
 "group": "tarmo5",
-"faces": 1450,
+"faces": 1528,
 "bmin": [
 162.88,
 -34.36,
@@ -194,7 +194,7 @@
 {
 "name": "B10-T_0",
 "group": "tarmo5",
-"faces": 1796,
+"faces": 1892,
 "bmin": [
 201.87,
 -34.36,
@@ -210,7 +210,7 @@
 {
 "name": "B07-T_0",
 "group": "tarmo5",
-"faces": 1242,
+"faces": 1308,
 "bmin": [
 230.46,
 -69.36,
@@ -274,7 +274,7 @@
 {
 "name": "Part_1_3",
 "group": "hardware",
-"faces": 1690,
+"faces": 1780,
 "bmin": [
 -141.02,
 -18.61,
@@ -290,7 +290,7 @@
 {
 "name": "Part_1_4",
 "group": "hardware",
-"faces": 1690,
+"faces": 1780,
 "bmin": [
 -102.02,
 -18.86,
@@ -306,7 +306,7 @@
 {
 "name": "Part_1_5",
 "group": "hardware",
-"faces": 1690,
+"faces": 1780,
 "bmin": [
 -102.02,
 30.14,
@@ -322,7 +322,7 @@
 {
 "name": "A02_0",
 "group": "tarmo5",
-"faces": 1774,
+"faces": 1870,
 "bmin": [
 -109.52,
 -111.27,
@@ -333,12 +333,12 @@
 -24.34,
 -24.78
 ],
-"bbox_change_mm": 0.03
+"bbox_change_mm": 0.02
 },
 {
 "name": "A02_1",
 "group": "tarmo5",
-"faces": 1774,
+"faces": 1870,
 "bmin": [
 -109.52,
 40.62,
@@ -349,12 +349,12 @@
 127.55,
 9.22
 ],
-"bbox_change_mm": 0.03
+"bbox_change_mm": 0.02
 },
 {
 "name": "A02_2",
 "group": "tarmo5",
-"faces": 1774,
+"faces": 1870,
 "bmin": [
 -109.52,
 40.62,
@@ -370,7 +370,7 @@
 {
 "name": "A02_3",
 "group": "tarmo5",
-"faces": 1774,
+"faces": 1870,
 "bmin": [
 -109.52,
 -111.27,
@@ -386,7 +386,7 @@
 {
 "name": "A02_4",
 "group": "tarmo5",
-"faces": 1774,
+"faces": 1870,
 "bmin": [
 181.11,
 38.69,
@@ -402,7 +402,7 @@
 {
 "name": "A02_5",
 "group": "tarmo5",
-"faces": 1774,
+"faces": 1870,
 "bmin": [
 170.56,
 38.69,
@@ -418,7 +418,7 @@
 {
 "name": "A02_6",
 "group": "tarmo5",
-"faces": 1774,
+"faces": 1870,
 "bmin": [
 181.11,
 -109.74,
@@ -434,7 +434,7 @@
 {
 "name": "A02_7",
 "group": "tarmo5",
-"faces": 1774,
+"faces": 1870,
 "bmin": [
 170.56,
 -109.74,
@@ -445,12 +445,12 @@
 -22.41,
 16.45
 ],
-"bbox_change_mm": 0.06
+"bbox_change_mm": 0.02
 },
 {
 "name": "A04_0",
 "group": "tarmo5",
-"faces": 970,
+"faces": 1022,
 "bmin": [
 179.7,
 98.57,
@@ -466,7 +466,7 @@
 {
 "name": "A04_1",
 "group": "tarmo5",
-"faces": 970,
+"faces": 1022,
 "bmin": [
 180.86,
 -116.8,
@@ -482,7 +482,7 @@
 {
 "name": "A03_0",
 "group": "tarmo5",
-"faces": 1508,
+"faces": 1588,
 "bmin": [
 -105.92,
 103.03,
@@ -498,7 +498,7 @@
 {
 "name": "A03_1",
 "group": "tarmo5",
-"faces": 1508,
+"faces": 1588,
 "bmin": [
 -107.12,
 -126.75,
@@ -514,7 +514,7 @@
 {
 "name": "Part_1_6",
 "group": "hardware",
-"faces": 1690,
+"faces": 1780,
 "bmin": [
 -103.12,
 -119.01,
@@ -530,7 +530,7 @@
 {
 "name": "Part_1_7",
 "group": "hardware",
-"faces": 1690,
+"faces": 1780,
 "bmin": [
 -103.12,
 -127.5,
@@ -546,7 +546,7 @@
 {
 "name": "A06_0",
 "group": "tarmo5",
-"faces": 1212,
+"faces": 1276,
 "bmin": [
 166.0,
 119.54,
@@ -562,7 +562,7 @@
 {
 "name": "A05_0",
 "group": "tarmo5",
-"faces": 1212,
+"faces": 1276,
 "bmin": [
 167.13,
 -131.8,
@@ -573,12 +573,12 @@
 -103.45,
 -3.11
 ],
-"bbox_change_mm": 0.02
+"bbox_change_mm": 0.01
 },
 {
 "name": "A08_0",
 "group": "tarmo5",
-"faces": 1400,
+"faces": 1474,
 "bmin": [
 109.1,
 47.51,
@@ -594,7 +594,7 @@
 {
 "name": "A07_0",
 "group": "tarmo5",
-"faces": 1400,
+"faces": 1474,
 "bmin": [
 109.1,
 -45.36,
@@ -610,7 +610,7 @@
 {
 "name": "A10B_0",
 "group": "tarmo5",
-"faces": 364,
+"faces": 382,
 "bmin": [
 165.18,
 -114.63,
@@ -626,7 +626,7 @@
 {
 "name": "A10C_0",
 "group": "tarmo5",
-"faces": 364,
+"faces": 382,
 "bmin": [
 158.07,
 -40.16,
@@ -642,7 +642,7 @@
 {
 "name": "A10A_0",
 "group": "tarmo5",
-"faces": 1400,
+"faces": 1474,
 "bmin": [
 155.92,
 -116.33,
@@ -658,7 +658,7 @@
 {
 "name": "A10B_1",
 "group": "tarmo5",
-"faces": 364,
+"faces": 382,
 "bmin": [
 164.01,
 120.27,
@@ -674,7 +674,7 @@
 {
 "name": "A10A_1",
 "group": "tarmo5",
-"faces": 1400,
+"faces": 1474,
 "bmin": [
 157.19,
 43.86,
@@ -690,7 +690,7 @@
 {
 "name": "A10C_1",
 "group": "tarmo5",
-"faces": 364,
+"faces": 382,
 "bmin": [
 158.02,
 45.8,
@@ -706,7 +706,7 @@
 {
 "name": "A09_0",
 "group": "tarmo5",
-"faces": 550,
+"faces": 578,
 "bmin": [
 111.34,
 -43.77,
@@ -722,7 +722,7 @@
 {
 "name": "Servo_Horn_0",
 "group": "tarmo5",
-"faces": 714,
+"faces": 752,
 "bmin": [
 110.4,
 1.04,
@@ -738,7 +738,7 @@
 {
 "name": "Part_1_8",
 "group": "hardware",
-"faces": 1690,
+"faces": 1780,
 "bmin": [
 186.37,
 -131.99,
@@ -749,12 +749,12 @@
 -126.59,
 -11.74
 ],
-"bbox_change_mm": 0.01
+"bbox_change_mm": 0.0
 },
 {
 "name": "C10_0",
 "group": "tarmo5",
-"faces": 216,
+"faces": 228,
 "bmin": [
 189.44,
 -134.95,
@@ -770,7 +770,7 @@
 {
 "name": "Part_1_9",
 "group": "hardware",
-"faces": 1690,
+"faces": 1780,
 "bmin": [
 186.24,
 -124.0,
@@ -786,7 +786,7 @@
 {
 "name": "C09_0",
 "group": "tarmo5",
-"faces": 1598,
+"faces": 1682,
 "bmin": [
 189.2,
 -138.9,
@@ -802,7 +802,7 @@
 {
 "name": "Part_1_10",
 "group": "hardware",
-"faces": 1690,
+"faces": 1780,
 "bmin": [
 185.03,
 134.95,
@@ -813,12 +813,12 @@
 140.2,
 -12.11
 ],
-"bbox_change_mm": 0.01
+"bbox_change_mm": 0.0
 },
 {
 "name": "C09_1",
 "group": "tarmo5",
-"faces": 1598,
+"faces": 1682,
 "bmin": [
 188.01,
 133.52,
@@ -834,7 +834,7 @@
 {
 "name": "C10_1",
 "group": "tarmo5",
-"faces": 216,
+"faces": 228,
 "bmin": [
 188.16,
 147.97,
@@ -850,7 +850,7 @@
 {
 "name": "Part_1_11",
 "group": "hardware",
-"faces": 1690,
+"faces": 1780,
 "bmin": [
 185.12,
 142.94,
@@ -861,7 +861,7 @@
 148.19,
 -12.09
 ],
-"bbox_change_mm": 0.01
+"bbox_change_mm": 0.0
 },
 {
 "name": "C07_0",
@@ -882,7 +882,7 @@
 {
 "name": "C06_0",
 "group": "tarmo5",
-"faces": 618,
+"faces": 650,
 "bmin": [
 -105.01,
 -13.56,
@@ -898,7 +898,7 @@
 {
 "name": "Part_1_12",
 "group": "hardware",
-"faces": 1690,
+"faces": 1780,
 "bmin": [
 -101.92,
 130.28,
@@ -914,7 +914,7 @@
 {
 "name": "C10_2",
 "group": "tarmo5",
-"faces": 216,
+"faces": 228,
 "bmin": [
 -100.12,
 -130.5,
@@ -930,7 +930,7 @@
 {
 "name": "C10_3",
 "group": "tarmo5",
-"faces": 216,
+"faces": 228,
 "bmin": [
 -98.92,
 143.78,
@@ -946,7 +946,7 @@
 {
 "name": "C03_0",
 "group": "tarmo5",
-"faces": 4498,
+"faces": 4736,
 "bmin": [
 -98.99,
 -39.34,
@@ -962,7 +962,7 @@
 {
 "name": "C03_1",
 "group": "tarmo5",
-"faces": 4498,
+"faces": 4736,
 "bmin": [
 -98.94,
 39.38,
@@ -978,7 +978,7 @@
 {
 "name": "C01_0",
 "group": "tarmo5",
-"faces": 4364,
+"faces": 4596,
 "bmin": [
 -102.87,
 -134.01,
@@ -994,7 +994,7 @@
 {
 "name": "C01_1",
 "group": "tarmo5",
-"faces": 4364,
+"faces": 4596,
 "bmin": [
 -101.75,
 15.14,
@@ -1010,7 +1010,7 @@
 {
 "name": "C02_0",
 "group": "tarmo5",
-"faces": 3430,
+"faces": 3612,
 "bmin": [
 -101.74,
 -36.11,
@@ -1026,7 +1026,7 @@
 {
 "name": "C02_1",
 "group": "tarmo5",
-"faces": 3430,
+"faces": 3612,
 "bmin": [
 -101.67,
 113.03,
@@ -1042,7 +1042,7 @@
 {
 "name": "C04_0",
 "group": "tarmo5",
-"faces": 3924,
+"faces": 4132,
 "bmin": [
 -98.39,
 -109.62,
@@ -1058,7 +1058,7 @@
 {
 "name": "C04_1",
 "group": "tarmo5",
-"faces": 3924,
+"faces": 4132,
 "bmin": [
 -97.46,
 39.53,
@@ -1074,7 +1074,7 @@
 {
 "name": "C04_2",
 "group": "tarmo5",
-"faces": 3924,
+"faces": 4132,
 "bmin": [
 -97.28,
 -56.35,
@@ -1090,7 +1090,7 @@
 {
 "name": "C04_3",
 "group": "tarmo5",
-"faces": 3924,
+"faces": 4132,
 "bmin": [
 -97.06,
 92.79,
@@ -1106,7 +1106,7 @@
 {
 "name": "C05-T_0",
 "group": "tarmo5",
-"faces": 1780,
+"faces": 1876,
 "bmin": [
 -98.08,
 -92.49,
@@ -1122,7 +1122,7 @@
 {
 "name": "C05-T_1",
 "group": "tarmo5",
-"faces": 1780,
+"faces": 1876,
 "bmin": [
 -97.14,
 56.67,
@@ -1138,7 +1138,7 @@
 {
 "name": "C03_2",
 "group": "tarmo5",
-"faces": 4498,
+"faces": 4736,
 "bmin": [
 -98.12,
 -111.76,
@@ -1154,7 +1154,7 @@
 {
 "name": "C03_3",
 "group": "tarmo5",
-"faces": 4498,
+"faces": 4736,
 "bmin": [
 -96.92,
 108.77,
@@ -1170,7 +1170,7 @@
 {
 "name": "Part_1_13",
 "group": "hardware",
-"faces": 1690,
+"faces": 1780,
 "bmin": [
 -101.92,
 138.78,
@@ -1186,7 +1186,7 @@
 {
 "name": "M4x16-Screw_0",
 "group": "hardware",
-"faces": 1032,
+"faces": 1086,
 "bmin": [
 167.36,
 -111.93,
@@ -1202,7 +1202,7 @@
 {
 "name": "M4x16-Screw_1",
 "group": "hardware",
-"faces": 1032,
+"faces": 1086,
 "bmin": [
 158.09,
 -38.46,
@@ -1218,7 +1218,7 @@
 {
 "name": "M4x16-Screw_2",
 "group": "hardware",
-"faces": 1032,
+"faces": 1086,
 "bmin": [
 166.27,
 120.04,
@@ -1234,7 +1234,7 @@
 {
 "name": "M4x16-Screw_3",
 "group": "hardware",
-"faces": 1032,
+"faces": 1086,
 "bmin": [
 158.05,
 47.51,
@@ -1250,7 +1250,7 @@
 {
 "name": "Wheel_110mm_0",
 "group": "wheels",
-"faces": 1028,
+"faces": 1084,
 "bmin": [
 147.14,
 132.08,
@@ -1266,7 +1266,7 @@
 {
 "name": "Wheel_110mm_1",
 "group": "wheels",
-"faces": 1028,
+"faces": 1084,
 "bmin": [
 -139.92,
 124.28,
@@ -1282,7 +1282,7 @@
 {
 "name": "Wheel_110mm_2",
 "group": "wheels",
-"faces": 1028,
+"faces": 1084,
 "bmin": [
 148.36,
 -160.08,
@@ -1298,7 +1298,7 @@
 {
 "name": "Wheel_110mm_3",
 "group": "wheels",
-"faces": 1028,
+"faces": 1084,
 "bmin": [
 -141.12,
 -154.51,
@@ -1314,7 +1314,7 @@
 {
 "name": "M4x35-Screw_0",
 "group": "hardware",
-"faces": 1078,
+"faces": 1136,
 "bmin": [
 235.64,
 15.64,
@@ -1330,7 +1330,7 @@
 {
 "name": "M4x35-Screw_1",
 "group": "hardware",
-"faces": 1078,
+"faces": 1136,
 "bmin": [
 235.64,
 4.64,
@@ -1346,7 +1346,7 @@
 {
 "name": "M4x35-Screw_2",
 "group": "hardware",
-"faces": 1078,
+"faces": 1136,
 "bmin": [
 235.64,
 -6.36,
@@ -1362,7 +1362,7 @@
 {
 "name": "M4x35-Screw_3",
 "group": "hardware",
-"faces": 1078,
+"faces": 1136,
 "bmin": [
 228.4,
 -0.86,
@@ -1378,7 +1378,7 @@
 {
 "name": "M4x35-Screw_4",
 "group": "hardware",
-"faces": 1078,
+"faces": 1136,
 "bmin": [
 228.4,
 10.14,
@@ -1394,7 +1394,7 @@
 {
 "name": "M4x45-Screw_0",
 "group": "hardware",
-"faces": 1078,
+"faces": 1136,
 "bmin": [
 161.35,
 -32.36,
@@ -1410,7 +1410,7 @@
 {
 "name": "M4x45-Screw_1",
 "group": "hardware",
-"faces": 1078,
+"faces": 1136,
 "bmin": [
 170.15,
 41.64,
@@ -1426,7 +1426,7 @@
 {
 "name": "M4x45-Screw_2",
 "group": "hardware",
-"faces": 1078,
+"faces": 1136,
 "bmin": [
 161.35,
 41.64,
@@ -1442,7 +1442,7 @@
 {
 "name": "M4x45-Screw_3",
 "group": "hardware",
-"faces": 1078,
+"faces": 1136,
 "bmin": [
 170.15,
 -32.36,
@@ -1458,7 +1458,7 @@
 {
 "name": "M4x50-Screw_0",
 "group": "hardware",
-"faces": 1078,
+"faces": 1136,
 "bmin": [
 -114.52,
 43.64,
@@ -1474,7 +1474,7 @@
 {
 "name": "M4x50-Screw_1",
 "group": "hardware",
-"faces": 1078,
+"faces": 1136,
 "bmin": [
 -114.52,
 43.64,
@@ -1490,7 +1490,7 @@
 {
 "name": "M4x50-Screw_2",
 "group": "hardware",
-"faces": 1078,
+"faces": 1136,
 "bmin": [
 -114.52,
 -34.36,
@@ -1506,7 +1506,7 @@
 {
 "name": "M4x50-Screw_3",
 "group": "hardware",
-"faces": 1078,
+"faces": 1136,
 "bmin": [
 -114.52,
 -34.36,
@@ -1522,7 +1522,7 @@
 {
 "name": "M4x16-Screw_4",
 "group": "hardware",
-"faces": 1032,
+"faces": 1086,
 "bmin": [
 -115.52,
 -15.36,
@@ -1538,7 +1538,7 @@
 {
 "name": "M4x16-Screw_5",
 "group": "hardware",
-"faces": 1032,
+"faces": 1086,
 "bmin": [
 -115.52,
 4.64,
@@ -1554,7 +1554,7 @@
 {
 "name": "M4x16-Screw_6",
 "group": "hardware",
-"faces": 1032,
+"faces": 1086,
 "bmin": [
 -115.52,
 24.64,
@@ -1570,7 +1570,7 @@
 {
 "name": "M4x16-Screw_7",
 "group": "hardware",
-"faces": 1032,
+"faces": 1086,
 "bmin": [
 181.16,
 24.64,
@@ -1586,7 +1586,7 @@
 {
 "name": "M4x16-Screw_8",
 "group": "hardware",
-"faces": 1032,
+"faces": 1086,
 "bmin": [
 181.16,
 4.64,
@@ -1602,7 +1602,7 @@
 {
 "name": "M4x16-Screw_9",
 "group": "hardware",
-"faces": 1032,
+"faces": 1086,
 "bmin": [
 181.16,
 -15.36,
@@ -1618,7 +1618,7 @@
 {
 "name": "M3-Nut_0",
 "group": "hardware",
-"faces": 414,
+"faces": 436,
 "bmin": [
 -88.42,
 -20.11,
@@ -1634,7 +1634,7 @@
 {
 "name": "M3-Nut_1",
 "group": "hardware",
-"faces": 414,
+"faces": 436,
 "bmin": [
 -86.02,
 30.89,
@@ -1650,7 +1650,7 @@
 {
 "name": "M3-Nut_2",
 "group": "hardware",
-"faces": 414,
+"faces": 436,
 "bmin": [
 -88.42,
 30.89,
@@ -1666,7 +1666,7 @@
 {
 "name": "motor_standoff",
 "group": "ours_printed",
-"faces": 10302,
+"faces": 10852,
 "bmin": [
 -132.02,
 37.14,
@@ -1682,7 +1682,7 @@
 {
 "name": "motor_plate",
 "group": "ours_printed",
-"faces": 9418,
+"faces": 9920,
 "bmin": [
 -139.99,
 47.2,
@@ -1698,7 +1698,7 @@
 {
 "name": "pinion_long",
 "group": "ours_printed",
-"faces": 23432,
+"faces": 24680,
 "bmin": [
 -141.65,
 -18.61,
@@ -1714,7 +1714,7 @@
 {
 "name": "motor_540",
 "group": "motor",
-"faces": 842,
+"faces": 886,
 "bmin": [
 -146.9,
 44.0,
@@ -1725,12 +1725,12 @@
 111.0,
 4.34
 ],
-"bbox_change_mm": 0.05
+"bbox_change_mm": 0.0
 },
 {
 "name": "electronics_tray",
 "group": "ours_printed",
-"faces": 8088,
+"faces": 13752,
 "bmin": [
 -43.6,
 -20.85,
@@ -1744,18 +1744,34 @@
 "bbox_change_mm": 0.0
 },
 {
+"name": "hbridge_standoff",
+"group": "ours_printed",
+"faces": 3050,
+"bmin": [
+57.9,
+-15.35,
+21.44
+],
+"bmax": [
+104.9,
+31.65,
+60.44
+],
+"bbox_change_mm": 0.01
+},
+{
 "name": "h_bridge_IBT2",
 "group": "electronics",
-"faces": 136,
+"faces": 144,
 "bmin": [
 56.4,
 -16.85,
-21.44
+37.04
 ],
 "bmax": [
 106.4,
 33.15,
-62.04
+79.04
 ],
 "bbox_change_mm": 0.0
 },
@@ -1780,37 +1796,37 @@
 "group": "electronics",
 "faces": 24,
 "bmin": [
-10.4,
-17.15,
-21.44
+12.4,
+19.9,
+22.94
 ],
 "bmax": [
-32.4,
-34.15,
-26.04
+30.4,
+31.4,
+27.54
 ],
 "bbox_change_mm": 0.0
 },
 {
 "name": "xl4015_servo_6V",
 "group": "electronics",
-"faces": 118,
+"faces": 126,
 "bmin": [
 -37.6,
 -17.35,
-21.44
+22.94
 ],
 "bmax": [
 -11.6,
 33.65,
-36.04
+37.54
 ],
 "bbox_change_mm": 0.0
 },
 {
 "name": "battery_module_2S",
 "group": "ours_printed",
-"faces": 876,
+"faces": 924,
 "bmin": [
 -34.8,
 -13.1,
@@ -1874,7 +1890,7 @@
 {
 "name": "servo_MG946R",
 "group": "servo",
-"faces": 86,
+"faces": 92,
 "bmin": [
 116.38,
 -1.71,

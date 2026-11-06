@@ -27,6 +27,24 @@
    ]
   ],
   [
+   "hbridge_standoff",
+   "h_bridge_IBT2",
+   312.4,
+   "mm3",
+   [
+    [
+     61.1,
+     -14.3,
+     37.0
+    ],
+    [
+     101.7,
+     31.6,
+     60.4
+    ]
+   ]
+  ],
+  [
    "servo_MG946R",
    "B04_0",
    6.9,
@@ -65,7 +83,7 @@
  ],
  "skipped_not_watertight": [],
  "notes": [],
- "electronics_top_z_car_coords": 62.0,
+ "electronics_top_z_car_coords": 79.0,
  "body_included": false,
  "mg946r_extra_1.6mm_overlaps": [
   [

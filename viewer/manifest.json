@@ -666,6 +666,12 @@
    "color": "#f08a24"
   },
   {
+   "name": "hbridge_standoff",
+   "group": "ours_printed",
+   "file": "parts/ours_printed__hbridge_standoff.stl",
+   "color": "#f08a24"
+  },
+  {
    "name": "h_bridge_IBT2",
    "group": "electronics",
    "file": "parts/electronics__h_bridge_IBT2.stl",
